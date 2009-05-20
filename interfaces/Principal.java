@@ -1,28 +1,22 @@
 package interfaces;
-import com.cloudgarden.layout.AnchorConstraint;
-import com.cloudgarden.layout.AnchorLayout;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
+
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
+import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.LayoutStyle;
 import javax.swing.ListModel;
-
 import javax.swing.WindowConstants;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 /**
@@ -39,6 +33,8 @@ import javax.swing.border.TitledBorder;
 */
 public class Principal extends javax.swing.JFrame {
 
+	private static final long serialVersionUID = 1L;
+
 	{
 		//Set Look & Feel
 		try {
@@ -49,7 +45,7 @@ public class Principal extends javax.swing.JFrame {
 	}
 
 	private JTabbedPane pestaña_principal;
-	private JPanel pnl_detalle_botones_eventos;
+	private JPanel pnl_detalles_botones_eventos;
 	private JPanel pnl_detalles;
 	private JButton btn_crear_evento;
 	private JPanel pnl_seleccion_evento;
@@ -79,6 +75,7 @@ public class Principal extends javax.swing.JFrame {
 	public static void main(String[] args) {
 		Principal inst = new Principal();
 		inst.setVisible(true);
+		inst.setEnabled(true);
 	}
 	
 	public Principal() {
@@ -93,7 +90,7 @@ public class Principal extends javax.swing.JFrame {
 			{
 				pestaña_principal = new JTabbedPane();
 				getContentPane().add(pestaña_principal, BorderLayout.CENTER);
-				pestaña_principal.setPreferredSize(new java.awt.Dimension(465, 370));
+				pestaña_principal.setPreferredSize(new java.awt.Dimension(529, 366));
 				{
 					pnl_eventos = new JPanel();
 					GridLayout pnl_eventosLayout = new GridLayout(1, 1);
@@ -118,26 +115,24 @@ public class Principal extends javax.swing.JFrame {
 							lst_eventos = new JList();
 							pnl_lista_eventos.add(lst_eventos, BorderLayout.CENTER);
 							lst_eventos.setModel(lst_eventosModel);
-							lst_eventos.setLayoutOrientation(JList.VERTICAL_WRAP);
 							lst_eventos.setVisibleRowCount(10);
-							lst_eventos.setBorder(new LineBorder(new java.awt.Color(0,0,0), 1, false));
 						}
 					}
 					{
-						pnl_detalle_botones_eventos = new JPanel();
-						pnl_eventos.add(pnl_detalle_botones_eventos);
+						pnl_detalles_botones_eventos = new JPanel();
+						pnl_eventos.add(pnl_detalles_botones_eventos);
 						GridLayout pnl_detalleLayout = new GridLayout(2, 1);
 						pnl_detalleLayout.setHgap(5);
 						pnl_detalleLayout.setVgap(5);
 						pnl_detalleLayout.setColumns(1);
 						pnl_detalleLayout.setRows(2);
-						pnl_detalle_botones_eventos.setLayout(pnl_detalleLayout);
-						pnl_detalle_botones_eventos.setPreferredSize(new java.awt.Dimension(170, 344));
+						pnl_detalles_botones_eventos.setLayout(pnl_detalleLayout);
+						pnl_detalles_botones_eventos.setPreferredSize(new java.awt.Dimension(170, 344));
 						{
 							pnl_detalles = new JPanel();
 							FlowLayout pnl_detallesLayout = new FlowLayout();
 							pnl_detalles.setLayout(pnl_detallesLayout);
-							pnl_detalle_botones_eventos.add(pnl_detalles);
+							pnl_detalles_botones_eventos.add(pnl_detalles);
 							pnl_detalles
 								.setPreferredSize(new java.awt.Dimension(
 									152,
@@ -146,39 +141,39 @@ public class Principal extends javax.swing.JFrame {
 						}
 						{
 							pnl_botones = new JPanel();
-							FlowLayout pnl_botonesLayout = new FlowLayout();
-							pnl_botonesLayout.setAlignOnBaseline(true);
-							pnl_botonesLayout.setHgap(150);
-							pnl_botonesLayout.setVgap(10);
-							pnl_detalle_botones_eventos.add(pnl_botones);
+							GroupLayout pnl_botonesLayout = new GroupLayout((JComponent)pnl_botones);
+							pnl_detalles_botones_eventos.add(pnl_botones);
 							pnl_botones.setLayout(pnl_botonesLayout);
 							{
 								btn_crear_evento = new JButton();
-								pnl_botones.add(btn_crear_evento);
 								btn_crear_evento.setText("Crear Evento");
-								btn_crear_evento.setPreferredSize(new java.awt.Dimension(150, 35));
-								btn_crear_evento.setMinimumSize(new java.awt.Dimension(34,24));
-								btn_crear_evento.setMaximumSize(new java.awt.Dimension(100,10));
 								btn_crear_evento.setSize(150, 35);
 							}
 							{
 								btn_eliminar_evento = new JButton();
-								pnl_botones.add(btn_eliminar_evento);
 								btn_eliminar_evento.setText("Eliminar Evento");
-								btn_eliminar_evento.setPreferredSize(new java.awt.Dimension(150, 35));
-								btn_eliminar_evento.setMinimumSize(new java.awt.Dimension(34,24));
-								btn_eliminar_evento.setMaximumSize(new java.awt.Dimension(100,10));
 								btn_eliminar_evento.setSize(150, 35);
 							}
 							{
 								btn_modificar_evento = new JButton();
-								pnl_botones.add(btn_modificar_evento);
 								btn_modificar_evento.setText("Modificar Evento");
-								btn_modificar_evento.setPreferredSize(new java.awt.Dimension(150, 35));
-								btn_modificar_evento.setMinimumSize(new java.awt.Dimension(34,24));
-								btn_modificar_evento.setMaximumSize(new java.awt.Dimension(100,10));
 								btn_modificar_evento.setSize(150, 35);
 							}
+					pnl_botonesLayout.setVerticalGroup(pnl_botonesLayout.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(btn_crear_evento, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+								.addComponent(btn_modificar_evento, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+								.addComponent(btn_eliminar_evento, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(80, Short.MAX_VALUE));
+					pnl_botonesLayout.setHorizontalGroup(pnl_botonesLayout.createSequentialGroup()
+								.addContainerGap()
+								.addGroup(pnl_botonesLayout.createParallelGroup()
+								    .addComponent(btn_crear_evento, GroupLayout.Alignment.LEADING, 0, 206, Short.MAX_VALUE)
+								    .addComponent(btn_eliminar_evento, GroupLayout.Alignment.LEADING, 0, 206, Short.MAX_VALUE)
+								    .addComponent(btn_modificar_evento, GroupLayout.Alignment.LEADING, 0, 206, Short.MAX_VALUE))
+								.addContainerGap());
 						}
 					}
 				}
@@ -195,7 +190,6 @@ public class Principal extends javax.swing.JFrame {
 						pnl_actividades.add(pnl_evento_actividades);
 						BorderLayout jPanel1Layout = new BorderLayout();
 						pnl_evento_actividades.setPreferredSize(new java.awt.Dimension(227, 344));
-						pnl_evento_actividades.setBorder(new LineBorder(new java.awt.Color(0,0,0), 1, false));
 						pnl_evento_actividades.setLayout(jPanel1Layout);
 						pnl_evento_actividades.setName("Evento");
 						{
@@ -218,15 +212,12 @@ public class Principal extends javax.swing.JFrame {
 							BorderLayout pnl_lista_actividadesLayout = new BorderLayout();
 							pnl_lista_actividades.setLayout(pnl_lista_actividadesLayout);
 							pnl_evento_actividades.add(pnl_lista_actividades, BorderLayout.CENTER);
-							pnl_lista_actividades.setBorder(BorderFactory
-								.createTitledBorder("Actividades"));
+							pnl_lista_actividades.setBorder(BorderFactory.createTitledBorder(null, "Actividades", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION));
 							pnl_lista_actividades
 								.setPreferredSize(new java.awt.Dimension(
 									225,
 									288));
 							{
-								ListModel jList1Model = new DefaultComboBoxModel(
-									new String[] { "Item One", "Item Two" });
 								ListModel lst_actividadesModel = new DefaultComboBoxModel(
 									new String[] { "Item One", "Item Two" });
 								lst_actividades = new JList();
@@ -263,76 +254,47 @@ public class Principal extends javax.swing.JFrame {
 						}
 						{
 							pnl_botones_actividades = new JPanel();
-							FlowLayout jPanel4Layout = new FlowLayout();
-							jPanel4Layout.setHgap(150);
-							jPanel4Layout.setVgap(10);
-							jPanel4Layout.setAlignOnBaseline(true);
+							GroupLayout jPanel4Layout = new GroupLayout((JComponent)pnl_botones_actividades);
 							pnl_detalles_botones_actividades.add(pnl_botones_actividades);
 							pnl_botones_actividades.setLayout(jPanel4Layout);
 							{
 								btn_crear_actividad = new JButton();
-								pnl_botones_actividades.add(btn_crear_actividad);
-								btn_crear_actividad.setText("Crear Evento");
-								btn_crear_actividad.setMinimumSize(new java.awt.Dimension(
-									34,
-									24));
-								btn_crear_actividad.setMaximumSize(new java.awt.Dimension(
-									100,
-									10));
-								btn_crear_actividad
-									.setPreferredSize(new java.awt.Dimension(
-										150,
-										35));
+								btn_crear_actividad.setText("Crear Actividad");
 								btn_crear_actividad.setSize(150, 35);
 							}
 							{
 								btn_eliminar_actividad = new JButton();
-								pnl_botones_actividades.add(btn_eliminar_actividad);
-								btn_eliminar_actividad.setText("Eliminar Evento");
-								btn_eliminar_actividad.setMinimumSize(new java.awt.Dimension(
-									34,
-									24));
-								btn_eliminar_actividad.setMaximumSize(new java.awt.Dimension(
-									100,
-									10));
-								btn_eliminar_actividad
-									.setPreferredSize(new java.awt.Dimension(
-										150,
-										35));
+								btn_eliminar_actividad.setText("Eliminar Actividad");
 								btn_eliminar_actividad.setSize(150, 35);
 							}
 							{
 								btn_modificar_actividad = new JButton();
-								pnl_botones_actividades.add(btn_modificar_actividad);
-								btn_modificar_actividad.setText("Modificar Evento");
-								btn_modificar_actividad.setMinimumSize(new java.awt.Dimension(
-									34,
-									24));
-								btn_modificar_actividad.setMaximumSize(new java.awt.Dimension(
-									100,
-									10));
-								btn_modificar_actividad
-									.setPreferredSize(new java.awt.Dimension(
-										150,
-										35));
+								btn_modificar_actividad.setText("Modificar Actividad");
 								btn_modificar_actividad.setSize(150, 35);
 							}
 							{
 								btn_asignar_recursos = new JButton();
-								pnl_botones_actividades.add(btn_asignar_recursos);
 								btn_asignar_recursos.setText("Asignar Recursos");
-								btn_asignar_recursos.setMinimumSize(new java.awt.Dimension(
-									34,
-									24));
-								btn_asignar_recursos.setMaximumSize(new java.awt.Dimension(
-									100,
-									10));
-								btn_asignar_recursos
-									.setPreferredSize(new java.awt.Dimension(
-										150,
-										35));
 								btn_asignar_recursos.setSize(150, 35);
 							}
+					jPanel4Layout.setHorizontalGroup(jPanel4Layout.createSequentialGroup()
+								.addContainerGap()
+								.addGroup(jPanel4Layout.createParallelGroup()
+								    .addComponent(btn_crear_actividad, GroupLayout.Alignment.LEADING, 0, 205, Short.MAX_VALUE)
+								    .addComponent(btn_eliminar_actividad, GroupLayout.Alignment.LEADING, 0, 205, Short.MAX_VALUE)
+								    .addComponent(btn_modificar_actividad, GroupLayout.Alignment.LEADING, 0, 205, Short.MAX_VALUE)
+								    .addComponent(btn_asignar_recursos, GroupLayout.Alignment.LEADING, 0, 205, Short.MAX_VALUE))
+								.addContainerGap());
+					jPanel4Layout.setVerticalGroup(jPanel4Layout.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(btn_crear_actividad, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+								.addComponent(btn_modificar_actividad, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+								.addComponent(btn_eliminar_actividad, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+								.addComponent(btn_asignar_recursos, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(17, Short.MAX_VALUE));
 						}
 					}
 				}
@@ -342,7 +304,6 @@ public class Principal extends javax.swing.JFrame {
 				}
 			}
 			pack();
-			this.setSize(473, 444);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

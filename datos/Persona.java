@@ -1,13 +1,8 @@
 package datos;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-
-public class Persona implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class Persona extends Elemento_Serializable {
+	//private static final long serialVersionUID = 1L;
+	
 	private String Nombre;
 
 	private String Apellido;
@@ -16,22 +11,14 @@ public class Persona implements Serializable {
 
 	private String Email;
 
-	public Persona(String N, String A, String D, String E) {
+	public Persona(int c, String N, String A, String D, String E) {
+		clave = c;
 		Nombre = N;
 		Apellido = A;
 		DNI = D;
 		Email = E;
 	}
-
-	public void Guardar() {
-		try {			
-			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("Persona.dat"));
-			os.writeObject(this);
-			os.close();
-		} catch (Exception E) {
-		}
-		;
-	}
+	
 
 	public String getApellido() {
 		return Apellido;

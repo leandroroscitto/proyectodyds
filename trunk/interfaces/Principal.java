@@ -22,6 +22,10 @@ import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 
+import datos.Evento;
+
+import base_datos.Archivo_Evento;
+
 /**
 * This code was edited or generated using CloudGarden's Jigloo
 * SWT/Swing GUI Builder, which is free for non-commercial
@@ -46,6 +50,7 @@ public class Principal extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
 	}
+	private Archivo_Evento eventos = new Archivo_Evento();
 
 	private JTabbedPane pestaña_principal;
 	private JPanel pnl_detalles_botones_eventos;
@@ -117,7 +122,6 @@ public class Principal extends javax.swing.JFrame {
 								new String[] { "Item One", "Item Two" });
 							lst_eventos = new JList();
 							pnl_lista_eventos.add(lst_eventos, BorderLayout.CENTER);
-							lst_eventos.setModel(lst_eventosModel);
 							lst_eventos.setVisibleRowCount(10);
 							lst_eventos.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 						}
@@ -319,11 +323,14 @@ public class Principal extends javax.swing.JFrame {
 		}
 	}
 	
+	
 	private void btn_crear_eventoMouseClicked(MouseEvent evt) {
 		System.out.println("btn_crear_evento.mouseClicked, event="+evt);
 		ABM_eventos vent=new interfaces.ABM_eventos(this);
 		vent.setVisible(true);		
 		setEnabled(false);
 	}
+	
+	
 
 }

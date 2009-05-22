@@ -1,22 +1,56 @@
-package datos;
+package base_datos;
 
 import java.util.ArrayList;
 
 import java.io.*;
 
+import datos.Elemento_Serializable;
+
 public abstract class Archivo {
 	
 	private ArrayList lista;
+	private int actual;	
+	private int tam;
 	protected String Nombre;	
 
 	
 	public Archivo(){
 		lista = new ArrayList();
+		actual = 0;
+		tam = 0;
 	}
 	//< OPERACIONES DE MANEJO DE ARCHIVOS >	
 	
+	
+	
+	
+	protected Elemento_Serializable primerElemento(){
+		if (tam == 0){
+			return null;
+		}else {
+			actual = 1;
+			return (Elemento_Serializable)lista.get(0);
+		}
+	}
+	
+	protected Elemento_Serializable siguienteElemento(){
+		
+		if (actual == tam){
+			return null;
+		}else{
+			actual++;
+			return (Elemento_Serializable) lista.get(actual-1);
+		}
+	}
+	
+	
+	
+	
+	
 	protected void insertarElemento(Elemento_Serializable ele){
-		lista.add(0, ele);
+		lista.add(tam, ele);
+		tam++;
+		
 	}
 	
 	/**
@@ -62,7 +96,7 @@ public abstract class Archivo {
       ObjectInputStream obj;
      
      try {     
-      file = new File(Nombre+".dat");   
+      file = new File("Archivos/"+Nombre+".dat");   
       obj = new ObjectInputStream(new FileInputStream(file));
       lista = (ArrayList)obj.readObject();
       obj.close();
@@ -86,7 +120,7 @@ public abstract class Archivo {
     public void GuardarLista(){
       ObjectOutputStream obj;      
     try {      	   	
-           obj=new ObjectOutputStream(new FileOutputStream(Nombre+".dat"));
+           obj=new ObjectOutputStream(new FileOutputStream("Archivos/"+Nombre+".dat"));
            obj.writeObject(lista);
            obj.close();      
      

@@ -326,7 +326,7 @@ public class Principal extends javax.swing.JFrame {
 	
 	private void btn_crear_eventoMouseClicked(MouseEvent evt) {
 		System.out.println("btn_crear_evento.mouseClicked, event="+evt);
-		ABM_eventos vent=new interfaces.ABM_eventos(this);
+		frm_abm_eventos vent=new interfaces.frm_abm_eventos(this);
 		vent.setVisible(true);		
 		setEnabled(false);
 	}

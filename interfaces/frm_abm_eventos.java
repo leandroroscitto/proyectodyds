@@ -18,6 +18,16 @@ import com.cloudgarden.layout.AnchorLayout;
  */
 public class frm_abm_eventos extends javax.swing.JFrame {
 
+	{
+		//Set Look & Feel
+		try {
+			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
 	private static final long serialVersionUID = 1L;
 	private pnl_botones_ac pnl_botones_ac1;
 	private pnl_atrib_evt pnl_atrib_evt1;

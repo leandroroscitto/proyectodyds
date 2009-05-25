@@ -1,4 +1,5 @@
 package interfaces;
+import com.toedter.calendar.JDateChooser;
 
 import javax.swing.GroupLayout;
 import javax.swing.JCheckBox;
@@ -26,22 +27,20 @@ import javax.swing.SwingConstants;
 public class pnl_fechas_act extends javax.swing.JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JFormattedTextField ftxf_fecha_ini_act;
-	private JFormattedTextField ftxf_fecha_fin_act;
-	private JLabel lb_act_al;
+	private JDateChooser dtc_fecha_ini_act;
 	private JLabel lb_fecha_acepta_fin;
 	private JLabel lb_fecha_ver_fin;
+	private JDateChooser dtc_fecha_acept_fin;
 	private JLabel lb_fecha_not_aut;
-	private JFormattedTextField ftxf_fecha_not_aut;
-	private JLabel lb_al;
 	private JLabel lb_fecha_recep;
 	private JLabel lb_fecha_ini_act;
-	private JFormattedTextField ftxf_fecha_acepta_fin;
-	private JFormattedTextField ftxf_fecha_ver_fin;
 	private JCheckBox ftxf_acepta_rev_trab;
-	private JFormattedTextField ftxf_fecha_fin_atrab;
-	private JFormattedTextField ftxf_fecha_ini_atrab;
+	private JDateChooser dtc_fecha_ini_atrab;
+	private JDateChooser dtc_fecha_fin_act;
 	private JCheckBox chb_acepta_trab;
+	private JDateChooser dtc_fecha_ver_final;
+	private JDateChooser dtc_fecha_not_aut;
+	private JDateChooser dtc_fecha_fin_atrab;
 
 	{
 		//Set Look & Feel
@@ -74,35 +73,11 @@ public class pnl_fechas_act extends javax.swing.JPanel {
 		try {
 			GroupLayout thisLayout = new GroupLayout((JComponent)this);
 			this.setLayout(thisLayout);
-			this.setPreferredSize(new java.awt.Dimension(468, 171));
-			{
-				ftxf_fecha_ini_act = new JFormattedTextField();
-				ftxf_fecha_ini_act.setText("00/00/00");
-				ftxf_fecha_ini_act.setHorizontalAlignment(SwingConstants.CENTER);
-			}
-			{
-				ftxf_fecha_fin_act = new JFormattedTextField();
-				ftxf_fecha_fin_act.setText("00/00/00");
-				ftxf_fecha_fin_act.setHorizontalAlignment(SwingConstants.CENTER);
-			}
+			this.setPreferredSize(new java.awt.Dimension(456, 181));
 			{
 				chb_acepta_trab = new JCheckBox();
 				chb_acepta_trab.setText("Acepta presentación de Trabajos");
 				chb_acepta_trab.setHorizontalTextPosition(SwingConstants.LEFT);
-			}
-			{
-				ftxf_fecha_ini_atrab = new JFormattedTextField();
-				ftxf_fecha_ini_atrab.setText("00/00/00");
-				ftxf_fecha_ini_atrab.setToolTipText("Fecha de inicio de recepción");
-				ftxf_fecha_ini_atrab.setEnabled(false);
-				ftxf_fecha_ini_atrab.setHorizontalAlignment(SwingConstants.CENTER);
-			}
-			{
-				ftxf_fecha_fin_atrab = new JFormattedTextField();
-				ftxf_fecha_fin_atrab.setText("00/00/00");
-				ftxf_fecha_fin_atrab.setToolTipText("Fecha de fin de recepción");
-				ftxf_fecha_fin_atrab.setEnabled(false);
-				ftxf_fecha_fin_atrab.setHorizontalAlignment(SwingConstants.CENTER);
 			}
 			{
 				ftxf_acepta_rev_trab = new JCheckBox();
@@ -110,46 +85,37 @@ public class pnl_fechas_act extends javax.swing.JPanel {
 				ftxf_acepta_rev_trab.setHorizontalTextPosition(SwingConstants.LEFT);
 			}
 			{
-				lb_act_al = new JLabel();
-				lb_act_al.setText("al");
+				dtc_fecha_acept_fin = new JDateChooser();
 			}
 			{
-				ftxf_fecha_ver_fin = new JFormattedTextField();
-				ftxf_fecha_ver_fin.setText("00/00/00");
-				ftxf_fecha_ver_fin.setEnabled(false);
-				ftxf_fecha_ver_fin.setHorizontalAlignment(SwingConstants.CENTER);
+				dtc_fecha_ini_atrab = new JDateChooser();
 			}
 			{
-				ftxf_fecha_acepta_fin = new JFormattedTextField();
-				ftxf_fecha_acepta_fin.setText("00/00/00");
-				ftxf_fecha_acepta_fin.setEnabled(false);
-				ftxf_fecha_acepta_fin.setHorizontalAlignment(SwingConstants.CENTER);
+				dtc_fecha_fin_atrab = new JDateChooser();
 			}
 			{
-				lb_al = new JLabel();
-				lb_al.setText("al");
-				lb_al.setEnabled(false);
+				dtc_fecha_not_aut = new JDateChooser();
 			}
 			{
-				ftxf_fecha_not_aut = new JFormattedTextField();
-				ftxf_fecha_not_aut.setText("00/00/00");
-				ftxf_fecha_not_aut.setEnabled(false);
-				ftxf_fecha_not_aut.setHorizontalAlignment(SwingConstants.CENTER);
+				dtc_fecha_ver_final = new JDateChooser();
+			}
+			{
+				dtc_fecha_fin_act = new JDateChooser();
+			}
+			{
+				dtc_fecha_ini_act = new JDateChooser();
 			}
 			{
 				lb_fecha_not_aut = new JLabel();
 				lb_fecha_not_aut.setText("Fecha de notificación a Autores:");
-				lb_fecha_not_aut.setEnabled(false);
 			}
 			{
 				lb_fecha_ver_fin = new JLabel();
 				lb_fecha_ver_fin.setText("Fecha de versión final:");
-				lb_fecha_ver_fin.setEnabled(false);
 			}
 			{
 				lb_fecha_acepta_fin = new JLabel();
 				lb_fecha_acepta_fin.setText("Fecha de aceptación final:");
-				lb_fecha_acepta_fin.setEnabled(false);
 			}
 			{
 				lb_fecha_ini_act = new JLabel();
@@ -158,55 +124,60 @@ public class pnl_fechas_act extends javax.swing.JPanel {
 			{
 				lb_fecha_recep = new JLabel();
 				lb_fecha_recep.setText("Fecha de recepción");
-				lb_fecha_recep.setEnabled(false);
 			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(ftxf_fecha_fin_act, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(ftxf_fecha_ini_act, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(lb_fecha_ini_act, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(lb_act_al, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addGroup(thisLayout.createParallelGroup()
+				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addComponent(lb_fecha_ini_act, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+				        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
+				    .addComponent(dtc_fecha_ini_act, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+				    .addComponent(dtc_fecha_fin_act, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
 				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 				.addComponent(chb_acepta_trab, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(ftxf_fecha_ini_atrab, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(lb_fecha_recep, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(ftxf_fecha_fin_atrab, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(lb_al, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGap(13)
-				.addComponent(ftxf_acepta_rev_trab, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(ftxf_fecha_not_aut, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(lb_fecha_not_aut, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(ftxf_fecha_ver_fin, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(lb_fecha_ver_fin, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(ftxf_fecha_acepta_fin, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(lb_fecha_acepta_fin, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)));
-			thisLayout.setHorizontalGroup(thisLayout.createParallelGroup()
 				.addGroup(thisLayout.createParallelGroup()
 				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addComponent(lb_fecha_recep, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+				        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
+				    .addComponent(dtc_fecha_ini_atrab, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+				    .addComponent(dtc_fecha_fin_atrab, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+				.addGap(11)
+				.addComponent(ftxf_acepta_rev_trab, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+				.addGroup(thisLayout.createParallelGroup()
+				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addComponent(lb_fecha_not_aut, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+				        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
+				    .addComponent(dtc_fecha_not_aut, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+				.addGroup(thisLayout.createParallelGroup()
+				    .addComponent(dtc_fecha_ver_final, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addComponent(lb_fecha_ver_fin, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+				        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)))
+				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+				.addGroup(thisLayout.createParallelGroup()
+				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addComponent(lb_fecha_acepta_fin, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+				        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
+				    .addComponent(dtc_fecha_acept_fin, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)));
+			thisLayout.setHorizontalGroup(thisLayout.createParallelGroup()
+				.addGroup(thisLayout.createParallelGroup()
+				    .addGroup(thisLayout.createSequentialGroup()
 				        .addGroup(thisLayout.createParallelGroup()
 				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 				                .addComponent(lb_fecha_ini_act, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
-				                .addComponent(ftxf_fecha_ini_act, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+				                .addComponent(dtc_fecha_ini_act, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE))
 				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 				                .addComponent(chb_acepta_trab, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE)
-				                .addGap(13)))
+				                .addGap(44)))
 				        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				        .addComponent(lb_act_al, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				        .addGap(8)
 				        .addGroup(thisLayout.createParallelGroup()
-				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				                .addComponent(lb_al, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-				                .addGap(0, 162, Short.MAX_VALUE))
-				            .addComponent(ftxf_fecha_fin_act, GroupLayout.Alignment.LEADING, 0, 179, Short.MAX_VALUE)))
+				            .addComponent(dtc_fecha_fin_atrab, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+				            .addComponent(dtc_fecha_fin_act, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)))
 				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 				        .addComponent(ftxf_acepta_rev_trab, GroupLayout.PREFERRED_SIZE, 315, GroupLayout.PREFERRED_SIZE)
-				        .addComponent(ftxf_fecha_fin_atrab, 0, 153, Short.MAX_VALUE)))
+				        .addGap(0, 141, Short.MAX_VALUE)))
 				.addGroup(thisLayout.createSequentialGroup()
 				    .addGap(31)
 				    .addGroup(thisLayout.createParallelGroup()
@@ -216,13 +187,18 @@ public class pnl_fechas_act extends javax.swing.JPanel {
 				                .addComponent(lb_fecha_ver_fin, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)
 				                .addComponent(lb_fecha_not_aut, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE))
 				            .addGroup(thisLayout.createParallelGroup()
-				                .addComponent(ftxf_fecha_acepta_fin, GroupLayout.Alignment.LEADING, 0, 239, Short.MAX_VALUE)
-				                .addComponent(ftxf_fecha_ver_fin, GroupLayout.Alignment.LEADING, 0, 239, Short.MAX_VALUE)
-				                .addComponent(ftxf_fecha_not_aut, GroupLayout.Alignment.LEADING, 0, 239, Short.MAX_VALUE)))
+				                .addGroup(thisLayout.createSequentialGroup()
+				                    .addComponent(dtc_fecha_ver_final, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
+				                .addGroup(thisLayout.createSequentialGroup()
+				                    .addComponent(dtc_fecha_not_aut, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
+				                .addGroup(thisLayout.createSequentialGroup()
+				                    .addComponent(dtc_fecha_acept_fin, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)))
+				            .addGap(0, 0, Short.MAX_VALUE))
 				        .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 				            .addComponent(lb_fecha_recep, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-				            .addComponent(ftxf_fecha_ini_atrab, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-				            .addGap(0, 191, Short.MAX_VALUE)))));
+				            .addComponent(dtc_fecha_ini_atrab, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
+				            .addGap(0, 83, Short.MAX_VALUE)))
+				    .addContainerGap(83, 83)));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

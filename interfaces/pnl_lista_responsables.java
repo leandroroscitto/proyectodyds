@@ -28,6 +28,16 @@ import com.cloudgarden.layout.AnchorLayout;
 */
 public class pnl_lista_responsables extends javax.swing.JPanel {
 
+	{
+		//Set Look & Feel
+		try {
+			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
 	private static final long serialVersionUID = 1L;
 	private JList lst_responsables;
 	private JButton btn_agregar_resp;
@@ -63,19 +73,19 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 					new DefaultComboBoxModel(
 							new String[] { "Item One", "Item Two" });
 				lst_responsables = new JList();
-				this.add(lst_responsables, new AnchorConstraint(25, 15, 60, 15, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS));
+				this.add(lst_responsables, new AnchorConstraint(25, 15, 48, 15, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS));
 				lst_responsables.setModel(lst_responsablesModel);
 				lst_responsables.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-				lst_responsables.setPreferredSize(new java.awt.Dimension(441, 145));
+				lst_responsables.setPreferredSize(new java.awt.Dimension(380, 92));
 			}
 			{
 				pnl_botones_lst_resp = new JPanel();
-				this.add(pnl_botones_lst_resp, new AnchorConstraint(800, 15, 15, 15, AnchorConstraint.ANCHOR_NONE, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS));
+				this.add(pnl_botones_lst_resp, new AnchorConstraint(800, 13, 5, 17, AnchorConstraint.ANCHOR_NONE, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS));
 				FlowLayout pnl_botones_lst_respLayout = new FlowLayout();
 				pnl_botones_lst_respLayout.setAlignOnBaseline(true);
 				pnl_botones_lst_respLayout.setHgap(15);
 				pnl_botones_lst_resp.setLayout(pnl_botones_lst_respLayout);
-				pnl_botones_lst_resp.setPreferredSize(new java.awt.Dimension(380, 39));
+				pnl_botones_lst_resp.setPreferredSize(new java.awt.Dimension(380, 37));
 				{
 					btn_agregar_resp = new JButton();
 					pnl_botones_lst_resp.add(btn_agregar_resp);

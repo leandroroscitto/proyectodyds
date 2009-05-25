@@ -1,4 +1,5 @@
 package interfaces;
+import com.toedter.calendar.JDateChooser;
 
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
@@ -40,8 +41,8 @@ public class pnl_atrib_evt extends javax.swing.JPanel {
 	private JLabel lb_nombre_evt;
 	private JLabel lb_fecha_fin_evt;
 	private JTextField txf_organizador_evt;
-	private JFormattedTextField ftxf_fecha_fin_evt;
-	private JFormattedTextField ftxf_fecha_ini_evt;
+	private JDateChooser dtc_fecha_fin_evt;
+	private JDateChooser dtc_fecha_ini_evt;
 	private JTextField txf_nombre_evt;
 	private JLabel lb_fecha_ini_evt;
 	private JLabel lb_organizador_evt;
@@ -73,6 +74,12 @@ public class pnl_atrib_evt extends javax.swing.JPanel {
 				lb_nombre_evt.setText("Nombre:");
 			}
 			{
+				dtc_fecha_ini_evt = new JDateChooser();
+			}
+			{
+				dtc_fecha_fin_evt = new JDateChooser();
+			}
+			{
 				lb_organizador_evt = new JLabel();
 				lb_organizador_evt.setText("Organizador:");
 			}
@@ -96,24 +103,6 @@ public class pnl_atrib_evt extends javax.swing.JPanel {
 						BorderFactory.createBevelBorder(BevelBorder.LOWERED), 
 						null));
 			}
-			{
-				ftxf_fecha_ini_evt = new JFormattedTextField();
-				ftxf_fecha_ini_evt.setText("00/00/00");
-				ftxf_fecha_ini_evt.setBorder(BorderFactory.createCompoundBorder(
-						BorderFactory.createBevelBorder(BevelBorder.LOWERED), 
-						null));
-				ftxf_fecha_ini_evt.setFont(new java.awt.Font("Monotype.com",0,12));
-				ftxf_fecha_ini_evt.setHorizontalAlignment(SwingConstants.CENTER);
-			}
-			{
-				ftxf_fecha_fin_evt = new JFormattedTextField();
-				ftxf_fecha_fin_evt.setText("00/00/00");
-				ftxf_fecha_fin_evt.setBorder(BorderFactory.createCompoundBorder(
-						BorderFactory.createBevelBorder(BevelBorder.LOWERED), 
-						null));
-				ftxf_fecha_fin_evt.setFont(new java.awt.Font("Monotype.com",0,12));
-				ftxf_fecha_fin_evt.setHorizontalAlignment(SwingConstants.CENTER);
-			}
 				thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
 					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 					    .addComponent(txf_nombre_evt, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -123,13 +112,17 @@ public class pnl_atrib_evt extends javax.swing.JPanel {
 					    .addComponent(txf_organizador_evt, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 					    .addComponent(lb_organizador_evt, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-					    .addComponent(lb_fecha_ini_evt, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-					    .addComponent(ftxf_fecha_ini_evt, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-					    .addComponent(lb_fecha_fin_evt, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-					    .addComponent(ftxf_fecha_fin_evt, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)));
+					.addGroup(thisLayout.createParallelGroup()
+					    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+					        .addComponent(lb_fecha_ini_evt, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
+					    .addComponent(dtc_fecha_ini_evt, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+					.addGroup(thisLayout.createParallelGroup()
+					    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+					        .addComponent(lb_fecha_fin_evt, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE))
+					    .addComponent(dtc_fecha_fin_evt, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)));
 				thisLayout.setHorizontalGroup(thisLayout.createParallelGroup()
 					.addGroup(thisLayout.createSequentialGroup()
 					    .addGroup(thisLayout.createParallelGroup()
@@ -137,17 +130,17 @@ public class pnl_atrib_evt extends javax.swing.JPanel {
 					        .addComponent(lb_fecha_ini_evt, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE))
 					    .addGroup(thisLayout.createParallelGroup()
 					        .addGroup(thisLayout.createSequentialGroup()
-					            .addComponent(ftxf_fecha_fin_evt, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE))
+					            .addComponent(dtc_fecha_ini_evt, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE))
 					        .addGroup(thisLayout.createSequentialGroup()
-					            .addComponent(ftxf_fecha_ini_evt, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)))
-					    .addGap(0, 100, Short.MAX_VALUE))
+					            .addComponent(dtc_fecha_fin_evt, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)))
+					    .addGap(0, 158, Short.MAX_VALUE))
 					.addGroup(thisLayout.createSequentialGroup()
 					    .addGroup(thisLayout.createParallelGroup()
 					        .addComponent(lb_organizador_evt, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
 					        .addComponent(lb_nombre_evt, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
 					    .addGroup(thisLayout.createParallelGroup()
-					        .addComponent(txf_organizador_evt, GroupLayout.Alignment.LEADING, 0, 241, Short.MAX_VALUE)
-					        .addComponent(txf_nombre_evt, GroupLayout.Alignment.LEADING, 0, 241, Short.MAX_VALUE))));
+					        .addComponent(txf_organizador_evt, GroupLayout.Alignment.LEADING, 0, 361, Short.MAX_VALUE)
+					        .addComponent(txf_nombre_evt, GroupLayout.Alignment.LEADING, 0, 361, Short.MAX_VALUE))));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

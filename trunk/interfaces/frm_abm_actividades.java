@@ -60,8 +60,9 @@ public class frm_abm_actividades extends javax.swing.JFrame {
 			AnchorLayout thisLayout = new AnchorLayout();
 			getContentPane().setLayout(thisLayout);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			this.setPreferredSize(new java.awt.Dimension(473, 625));
+			this.setPreferredSize(new java.awt.Dimension(498, 649));
 			this.setMinimumSize(new java.awt.Dimension(0, 0));
+			this.setTitle("ABM Actividades");
 			{
 				pnl_atrib_act1 = new pnl_atrib_act();
 				getContentPane().add(pnl_atrib_act1, new AnchorConstraint(5, 5, 385, 5, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_NONE, AnchorConstraint.ANCHOR_ABS));
@@ -70,17 +71,17 @@ public class frm_abm_actividades extends javax.swing.JFrame {
 			{
 				pnl_fechas_act1 = new pnl_fechas_act();
 				getContentPane().add(pnl_fechas_act1, new AnchorConstraint(108, 5, 431, 5, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_NONE, AnchorConstraint.ANCHOR_ABS));
-				pnl_fechas_act1.setPreferredSize(new java.awt.Dimension(507, 174));
+				pnl_fechas_act1.setPreferredSize(new java.awt.Dimension(480, 186));
 			}
 			{
 				pnl_caract_part_aceptados1 = new pnl_caract_part_aceptados();
-				getContentPane().add(pnl_caract_part_aceptados1, new AnchorConstraint(288, 5, 685, 5, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS));
-				pnl_caract_part_aceptados1.setPreferredSize(new java.awt.Dimension(507, 122));
+				getContentPane().add(pnl_caract_part_aceptados1, new AnchorConstraint(300, 5, 685, 5, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS));
+				pnl_caract_part_aceptados1.setPreferredSize(new java.awt.Dimension(480, 126));
 			}
 			{
 				pnl_lista_responsables1 = new pnl_lista_responsables();
 				getContentPane().add(pnl_lista_responsables1, new AnchorConstraint(695, 5, 52, 5, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS));
-				pnl_lista_responsables1.setPreferredSize(new java.awt.Dimension(507, 131));
+				pnl_lista_responsables1.setPreferredSize(new java.awt.Dimension(480, 138));
 			}
 			{
 				pnl_botones_ac1 = new pnl_botones_ac();
@@ -88,7 +89,7 @@ public class frm_abm_actividades extends javax.swing.JFrame {
 				pnl_botones_ac1.setPreferredSize(new java.awt.Dimension(507, 46));
 			}
 			pack();
-			this.setSize(473, 625);
+			this.setSize(498, 649);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

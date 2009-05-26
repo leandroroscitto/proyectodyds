@@ -5,6 +5,8 @@ import javax.swing.WindowConstants;
 
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
@@ -33,6 +35,9 @@ public class frm_abm_eventos extends javax.swing.JFrame {
 	private pnl_atrib_evt pnl_atrib_evt1;
 	private pnl_lista_auspicios pnl_lista_auspicios1;
 	private pnl_lista_responsables pnl_lista_responsables1;
+	
+	// Componentes
+	private JFrame Parent;
 
 	/**
 	 * Auto-generated main method to display this JFrame
@@ -49,6 +54,7 @@ public class frm_abm_eventos extends javax.swing.JFrame {
 
 	public frm_abm_eventos(JFrame P) {
 		super();
+		Parent = P;
 		initGUI();
 	}
 
@@ -59,7 +65,12 @@ public class frm_abm_eventos extends javax.swing.JFrame {
 			this.setTitle("ABM Eventos");
 			this.setPreferredSize(new java.awt.Dimension(495, 530));
 			this.setMinimumSize(new java.awt.Dimension(495, 530));
-			this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+			this.addWindowListener(new WindowAdapter() {
+				public void windowClosing(WindowEvent evt){
+					thisWindowClosing(evt);
+				}
+			});
 			{
 				pnl_botones_ac1 = new pnl_botones_ac();
 				getContentPane().add(pnl_botones_ac1, new AnchorConstraint(850, 5, 5, 5, AnchorConstraint.ANCHOR_NONE, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS));
@@ -86,5 +97,12 @@ public class frm_abm_eventos extends javax.swing.JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void thisWindowClosing(WindowEvent evt) {
+		System.out.println("this.windowClosed, event="+evt);
+		this.setVisible(false);
+		Parent.setEnabled(true);
+		Parent.requestFocus();
 	}
 }

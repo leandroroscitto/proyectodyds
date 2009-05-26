@@ -1,4 +1,6 @@
 package interfaces;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -29,15 +31,18 @@ import javax.swing.SwingUtilities;
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
 public class dlg_det_carac_part extends javax.swing.JDialog {
-	private JComboBox cb_carc_part;
-	private JFormattedTextField ftxf_arancel;
-	private JCheckBox cbx_e_cert;
-	private JLabel lb_porcent;
-	private JLabel lb_arancel;
-	private JLabel lb_carac_part;
-	private JSpinner sp_porcent;
-	private JCheckBox cbx_eva;
+	public JComboBox cb_carc_part;
+	public JFormattedTextField ftxf_arancel;
+	public JCheckBox cbx_e_cert;
+	public JLabel lb_porcent;
+	public JLabel lb_arancel;
+	public JLabel lb_carac_part;
+	public JSpinner sp_porcent;
+	public JCheckBox cbx_eva;
 
+	// Componentes
+	private JFrame Parent;
+	
 	{
 		//Set Look & Feel
 		try {
@@ -61,8 +66,9 @@ public class dlg_det_carac_part extends javax.swing.JDialog {
 		});
 	}
 	
-	public dlg_det_carac_part(JFrame frame) {
-		super(frame);
+	public dlg_det_carac_part(JFrame P) {
+		super();
+		Parent=P;
 		initGUI();
 	}
 	
@@ -71,6 +77,11 @@ public class dlg_det_carac_part extends javax.swing.JDialog {
 			GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
 			getContentPane().setLayout(thisLayout);
 			this.setTitle("Detalles de Caracter de Participación");
+			this.addWindowListener(new WindowAdapter() {
+				public void windowClosing(WindowEvent evt) {
+					thisWindowClosing(evt);
+				}
+			});
 			{
 				ComboBoxModel cb_carc_partModel = 
 					new DefaultComboBoxModel(
@@ -159,6 +170,13 @@ public class dlg_det_carac_part extends javax.swing.JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void thisWindowClosing(WindowEvent evt) {
+		System.out.println("this.windowClosing, event="+evt);
+		Parent.setEnabled(true);
+		Parent.requestFocus();
+		setVisible(false);
 	}
 
 }

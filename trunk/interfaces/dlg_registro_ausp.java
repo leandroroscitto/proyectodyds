@@ -3,6 +3,8 @@ import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
@@ -34,17 +36,20 @@ import javax.swing.border.LineBorder;
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
 public class dlg_registro_ausp extends javax.swing.JDialog {
-	private JPanel pnl_lst_ausp;
-	private JList lst_auspiciantes;
-	private JTextField txf_tipo_ausp;
-	private JLabel lb_arancel;
-	private JButton btn_canelar;
-	private JButton btn_agregar_ausp;
-	private JLabel lb_tipo_ausp;
-	private JTextField txf_arancel;
-	private JButton btn_crear_ausp;
-	private JPanel pnl_botones;
-	private JPanel pnl_datos_ausp;
+	public JPanel pnl_lst_ausp;
+	public JList lst_auspiciantes;
+	public JTextField txf_tipo_ausp;
+	public JLabel lb_arancel;
+	public JButton btn_canelar;
+	public JButton btn_agregar_ausp;
+	public JLabel lb_tipo_ausp;
+	public JTextField txf_arancel;
+	public JButton btn_crear_ausp;
+	public JPanel pnl_botones;
+	public JPanel pnl_datos_ausp;
+	
+	// Componentes
+	private JFrame Parent;
 
 	{
 		//Set Look & Feel
@@ -69,8 +74,9 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 		});
 	}
 	
-	public dlg_registro_ausp(JFrame frame) {
-		super(frame);
+	public dlg_registro_ausp(JFrame P) {
+		super();
+		Parent = P;
 		initGUI();
 	}
 	
@@ -81,6 +87,11 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 				getContentPane().setLayout(thisLayout);
 				this.setTitle("Registro de Auspicios");
 				this.setResizable(false);
+				this.addWindowListener(new WindowAdapter() {
+					public void windowClosing(WindowEvent evt) {
+						thisWindowClosing(evt);
+					}
+				});
 				{
 					pnl_lst_ausp = new JPanel();
 					AnchorLayout pnl_lst_auspLayout = new AnchorLayout();
@@ -169,6 +180,13 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void thisWindowClosing(WindowEvent evt) {
+		System.out.println("this.windowClosing, event="+evt);
+		Parent.setEnabled(true);
+		Parent.requestFocus();
+		setVisible(false);
 	}
 
 }

@@ -26,21 +26,21 @@ import javax.swing.SwingConstants;
 */
 public class pnl_fechas_act extends javax.swing.JPanel {
 
-	private static final long serialVersionUID = 1L;
-	private JDateChooser dtc_fecha_ini_act;
-	private JLabel lb_fecha_acepta_fin;
-	private JLabel lb_fecha_ver_fin;
-	private JDateChooser dtc_fecha_acept_fin;
-	private JLabel lb_fecha_not_aut;
-	private JLabel lb_fecha_recep;
-	private JLabel lb_fecha_ini_act;
-	private JCheckBox ftxf_acepta_rev_trab;
-	private JDateChooser dtc_fecha_ini_atrab;
-	private JDateChooser dtc_fecha_fin_act;
-	private JCheckBox chb_acepta_trab;
-	private JDateChooser dtc_fecha_ver_final;
-	private JDateChooser dtc_fecha_not_aut;
-	private JDateChooser dtc_fecha_fin_atrab;
+	public static final long serialVersionUID = 1L;
+	public JDateChooser dtc_fecha_ini_act;
+	public JLabel lb_fecha_acepta_fin;
+	public JLabel lb_fecha_ver_fin;
+	public JDateChooser dtc_fecha_acept_fin;
+	public JLabel lb_fecha_not_aut;
+	public JLabel lb_fecha_recep;
+	public JLabel lb_fecha_ini_act;
+	public JCheckBox ftxf_acepta_rev_trab;
+	public JDateChooser dtc_fecha_ini_atrab;
+	public JDateChooser dtc_fecha_fin_act;
+	public JCheckBox chb_acepta_trab;
+	public JDateChooser dtc_fecha_ver_final;
+	public JDateChooser dtc_fecha_not_aut;
+	public JDateChooser dtc_fecha_fin_atrab;
 
 	{
 		//Set Look & Feel

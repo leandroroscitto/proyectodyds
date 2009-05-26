@@ -3,6 +3,8 @@ import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
 
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -28,12 +30,12 @@ import javax.swing.ListModel;
 */
 public class pnl_caract_part_aceptados extends javax.swing.JPanel {
 
-	private static final long serialVersionUID = 1L;
-	private JList lst_caracter_part;
-	private JButton btn_quitar_car;
-	private JButton btn_modificar_car;
-	private JButton btn_agregar_car;
-	private JPanel pnl_botones_caracter_part;
+	public static final long serialVersionUID = 1L;
+	public JList lst_caracter_part;
+	public JButton btn_quitar_car;
+	public JButton btn_modificar_car;
+	public JButton btn_agregar_car;
+	public JPanel pnl_botones_caracter_part;
 
 	{
 		//Set Look & Feel

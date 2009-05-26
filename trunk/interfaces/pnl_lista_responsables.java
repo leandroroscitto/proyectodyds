@@ -38,11 +38,11 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 	}
 
 
-	private static final long serialVersionUID = 1L;
-	private JList lst_responsables;
-	private JButton btn_agregar_resp;
-	private JButton btn_quitar_resp;
-	private JPanel pnl_botones_lst_resp;
+	public static final long serialVersionUID = 1L;
+	public JList lst_responsables;
+	public JButton btn_agregar_resp;
+	public JButton btn_quitar_resp;
+	public JPanel pnl_botones_lst_resp;
 
 	/**
 	* Auto-generated main method to display this 

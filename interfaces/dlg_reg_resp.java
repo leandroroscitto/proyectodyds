@@ -1,6 +1,8 @@
 package interfaces;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -30,13 +32,16 @@ import javax.swing.table.TableModel;
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
 public class dlg_reg_resp extends javax.swing.JDialog {
-	private JLabel lb_selec_resp;
-	private JTable tbl_personas;
-	private JScrollPane sp_tabla;
-	private JButton btn_cancelar;
-	private JButton btn_registrar_pers;
-	private JButton btn_agregar_resp;
-	private JPanel pnl_botones;
+	public JLabel lb_selec_resp;
+	public JTable tbl_personas;
+	public JScrollPane sp_tabla;
+	public JButton btn_cancelar;
+	public JButton btn_registrar_pers;
+	public JButton btn_agregar_resp;
+	public JPanel pnl_botones;
+	
+	// Componentes
+	private JFrame Parent;
 
 	{
 		//Set Look & Feel
@@ -61,8 +66,9 @@ public class dlg_reg_resp extends javax.swing.JDialog {
 		});
 	}
 	
-	public dlg_reg_resp(JFrame frame) {
-		super(frame);
+	public dlg_reg_resp(JFrame P) {
+		super();
+		Parent =P;
 		initGUI();
 	}
 	
@@ -75,6 +81,11 @@ public class dlg_reg_resp extends javax.swing.JDialog {
 				this.setPreferredSize(new java.awt.Dimension(565, 205));
 				this.setResizable(false);
 				this.setMinimumSize(new java.awt.Dimension(565, 205));
+				this.addWindowListener(new WindowAdapter() {
+					public void windowClosing(WindowEvent evt) {
+						thisWindowClosing(evt);
+					}
+				});
 				{
 					lb_selec_resp = new JLabel();
 					lb_selec_resp.setText("Seleccionar Responsable:");
@@ -131,6 +142,13 @@ public class dlg_reg_resp extends javax.swing.JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void thisWindowClosing(WindowEvent evt) {
+		System.out.println("this.windowClosing, event="+evt);
+		Parent.setEnabled(true);
+		Parent.requestFocus();
+		setVisible(false);
 	}
 
 }

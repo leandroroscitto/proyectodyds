@@ -23,8 +23,8 @@ import javax.swing.WindowConstants;
 public class pnl_botones_ac extends javax.swing.JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JButton btn_cancelar;
-	private JButton btn_acepta;
+	public JButton btn_cancelar;
+	public JButton btn_acepta;
 
 	/**
 	* Auto-generated main method to display this 

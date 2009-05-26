@@ -29,15 +29,15 @@ import javax.swing.WindowConstants;
 public class pnl_atrib_act extends javax.swing.JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JLabel lb_nombre;
-	private JLabel lb_acargo;
-	private JLabel lb_asignado;
-	private JComboBox cb_tipo_act;
-	private JLabel lb_nombre_acargo;
-	private JButton bt_acargo;
-	private JComboBox cb_acargo;
-	private JTextField txf_nombre;
-	private JLabel lb_tipo_act;
+	public JLabel lb_nombre;
+	public JLabel lb_acargo;
+	public JLabel lb_asignado;
+	public JComboBox cb_tipo_act;
+	public JLabel lb_nombre_acargo;
+	public JButton bt_acargo;
+	public JComboBox cb_acargo;
+	public JTextField txf_nombre;
+	public JLabel lb_tipo_act;
 
 	{
 		//Set Look & Feel

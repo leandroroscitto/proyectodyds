@@ -38,14 +38,14 @@ public class pnl_atrib_evt extends javax.swing.JPanel {
 		}
 	}
 
-	private JLabel lb_nombre_evt;
-	private JLabel lb_fecha_fin_evt;
-	private JTextField txf_organizador_evt;
-	private JDateChooser dtc_fecha_fin_evt;
-	private JDateChooser dtc_fecha_ini_evt;
-	private JTextField txf_nombre_evt;
-	private JLabel lb_fecha_ini_evt;
-	private JLabel lb_organizador_evt;
+	public JLabel lb_nombre_evt;
+	public JLabel lb_fecha_fin_evt;
+	public JTextField txf_organizador_evt;
+	public JDateChooser dtc_fecha_fin_evt;
+	public JDateChooser dtc_fecha_ini_evt;
+	public JTextField txf_nombre_evt;
+	public JLabel lb_fecha_ini_evt;
+	public JLabel lb_organizador_evt;
 
 	/**
 	* Auto-generated main method to display this 

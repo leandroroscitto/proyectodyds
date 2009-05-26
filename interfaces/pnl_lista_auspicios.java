@@ -39,11 +39,11 @@ public class pnl_lista_auspicios extends javax.swing.JPanel {
 		}
 	}
 
-	private JList lst_auspicios;
-	private JButton btn_quitar_aus;
-	private JButton btn_modificar_aus;
-	private JButton btn_agregar_aus;
-	private JPanel pnl_botones_lst_aus;
+	public JList lst_auspicios;
+	public JButton btn_quitar_aus;
+	public JButton btn_modificar_aus;
+	public JButton btn_agregar_aus;
+	public JPanel pnl_botones_lst_aus;
 
 	/**
 	* Auto-generated main method to display this 

@@ -3,6 +3,8 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -76,7 +78,16 @@ public class Principal extends javax.swing.JFrame {
 	private JPanel pnl_auspiciantes;
 	private JPanel pnl_actividades;
 	private JPanel pnl_eventos;
-
+	
+	// Ventanas utilizadas
+	private frm_abm_actividades abm_act;
+	private frm_abm_eventos abm_event;
+	
+	private void Iniciar_comp(){
+		abm_act=new frm_abm_actividades(this);
+		abm_event= new frm_abm_eventos(this);
+	}
+	
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
@@ -88,12 +99,13 @@ public class Principal extends javax.swing.JFrame {
 	
 	public Principal() {
 		super();
+		Iniciar_comp();
 		initGUI();
 	}
 	
 	private void initGUI() {
 		try {
-			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 			this.setTitle("Principal");
 			{
 				pestaña_principal = new JTabbedPane();
@@ -275,6 +287,11 @@ public class Principal extends javax.swing.JFrame {
 								btn_crear_actividad = new JButton();
 								btn_crear_actividad.setText("Crear Actividad");
 								btn_crear_actividad.setSize(150, 35);
+								btn_crear_actividad.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent evt) {
+										btn_crear_actividadActionPerformed(evt);
+									}
+								});
 							}
 							{
 								btn_eliminar_actividad = new JButton();
@@ -326,11 +343,14 @@ public class Principal extends javax.swing.JFrame {
 	
 	private void btn_crear_eventoMouseClicked(MouseEvent evt) {
 		System.out.println("btn_crear_evento.mouseClicked, event="+evt);
-		frm_abm_eventos vent=new interfaces.frm_abm_eventos(this);
-		vent.setVisible(true);		
+		abm_event.setVisible(true);		
 		setEnabled(false);
 	}
 	
-	
+	private void btn_crear_actividadActionPerformed(ActionEvent evt) {
+		System.out.println("btn_crear_actividad.actionPerformed, event="+evt);
+		abm_act.setVisible(true);
+		setEnabled(false);
+	}
 
 }

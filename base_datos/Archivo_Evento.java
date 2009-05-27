@@ -1,5 +1,7 @@
 package base_datos;
 
+import java.util.ArrayList;
+
 import datos.Evento;
 
 public class Archivo_Evento extends Archivo{
@@ -23,5 +25,13 @@ public class Archivo_Evento extends Archivo{
 	
 	public Evento recuperar_Evento(int clave){
 		return (Evento)(super.recuperarElemento(clave));		
+	}
+	
+	public ArrayList obtenerListaEventos(){
+		return super.obtenerLista();
+	}
+	
+	public int cantidadEventos(){
+		return cantElementos();
 	}
 }

@@ -53,6 +53,18 @@ public abstract class Archivo {
 		
 	}
 	
+	
+	
+	protected ArrayList obtenerLista(){
+		return lista;
+	}
+	
+	protected int cantElementos(){
+		return tam;
+	}
+	
+	
+	
 	/**
 	 * Recupera un Elemento de la lista partir de su clave.
 	 * @param c entero, clave del elemento que se quiere devolver.
@@ -87,8 +99,8 @@ public abstract class Archivo {
 	
 	
 	/**
-     *Lee desde el archivo "Nombre.dat" la lista almacenada y 
-     *la carga para ser utilizada.
+     * 
+     *
      */
 	
     public void AbrirLista(){
@@ -100,6 +112,7 @@ public abstract class Archivo {
       obj = new ObjectInputStream(new FileInputStream(file));
       lista = (ArrayList)obj.readObject();
       obj.close();
+      tam = lista.size();
      }
      catch(FileNotFoundException e){
     
@@ -115,7 +128,7 @@ public abstract class Archivo {
     
     
     /**
-     *Guarda en el archivo "CLIENTES.dat" la lista de usuarios.
+     *
      **/
     public void GuardarLista(){
       ObjectOutputStream obj;      

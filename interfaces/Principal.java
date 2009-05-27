@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -335,9 +336,23 @@ public class Principal extends javax.swing.JFrame {
 				}
 			}
 			pack();
+			cargarEventos();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void cargarEventos(){
+		DefaultListModel modelo = new DefaultListModel();
+		
+		eventos.AbrirLista();
+		Evento e = eventos.primerEvento(); 
+		e = eventos.primerEvento();
+		while (e != null){
+			modelo.addElement(e.getNombre());
+			e = eventos.siguienteEvento();
+		}				  
+		lst_eventos.setModel(modelo);		
 	}
 	
 	

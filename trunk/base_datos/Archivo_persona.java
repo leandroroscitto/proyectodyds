@@ -1,5 +1,7 @@
 package base_datos;
 
+import java.util.ArrayList;
+
 import datos.Persona;
 
 public class Archivo_persona extends Archivo{
@@ -15,6 +17,10 @@ public class Archivo_persona extends Archivo{
 	
 	public Persona recuperar_persona(int clave){
 		return (Persona)(super.recuperarElemento(clave));		
+	}
+	
+	public ArrayList obtenerListaPersonas(){
+		return super.obtenerLista();
 	}
 
 }

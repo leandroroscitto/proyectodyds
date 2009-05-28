@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import datos.Auspiciante;
 import datos.Persona;
 import datos.Evento;
+import datos.Relaciones.Auspicio;
 
 public class Principal_prueba {
 
@@ -16,6 +18,7 @@ public class Principal_prueba {
 		/*Datos D = new Datos();
 		D.lista_personas = new ArrayList();
 		D.lista_eventos = new ArrayList();
+		D.lista_auspiciantes = new ArrayList();
 
 		Archivo A = Archivo_Unico.getArchivo();
 
@@ -29,18 +32,38 @@ public class Principal_prueba {
 				"luis@gmail.com");
 		Persona p5 = new Persona(5, "Pancho", "Lopez", "34612879",
 				"pancho@gmail.com");
+		
+		Auspiciante a1 = new Auspiciante(1,"Asupiciante 1","111111");
+		Auspiciante a2 = new Auspiciante(2,"Asupiciante 2","222222");
+		Auspiciante a3 = new Auspiciante(3,"Asupiciante 3","333333");
+		Auspiciante a4 = new Auspiciante(4,"Asupiciante 4","444444");
+		Auspiciante a5 = new Auspiciante(5,"Asupiciante 5","555555");
+		Auspiciante a6 = new Auspiciante(6,"Asupiciante 6","666666");
+		Auspiciante a7 = new Auspiciante(7,"Asupiciante 7","777777");
+		Auspiciante a8 = new Auspiciante(8,"Asupiciante 8","888888");
+		Auspiciante a9 = new Auspiciante(9,"Asupiciante 9","999999");
 
 		D.lista_personas.add(p1);
 		D.lista_personas.add(p2);
 		D.lista_personas.add(p3);
 		D.lista_personas.add(p4);
 		D.lista_personas.add(p5);
+		
+		D.lista_auspiciantes.add(a1);
+		D.lista_auspiciantes.add(a2);
+		D.lista_auspiciantes.add(a3);
+		D.lista_auspiciantes.add(a4);
+		D.lista_auspiciantes.add(a5);
+		D.lista_auspiciantes.add(a6);
+		D.lista_auspiciantes.add(a7);
+		D.lista_auspiciantes.add(a8);
+		D.lista_auspiciantes.add(a9);
 
-		Evento e1 = new Evento(1, "Nombre 1", p1);
-		Evento e2 = new Evento(2, "Nombre 2", p2);
-		Evento e3 = new Evento(3, "Nombre 3", p3);
-		Evento e4 = new Evento(4, "Nombre 4", p4);
-		Evento e5 = new Evento(5, "Nombre 5", p5);
+		Evento e1 = new Evento(1, "Nombre 1", "Organizador 1");
+		Evento e2 = new Evento(2, "Nombre 2", "Organizador 2");
+		Evento e3 = new Evento(3, "Nombre 3", "Organizador 3");
+		Evento e4 = new Evento(4, "Nombre 4", "Organizador 4");
+		Evento e5 = new Evento(5, "Nombre 5", "Organizador 5");
 
 		D.lista_eventos.add(e1);
 		D.lista_eventos.add(e2);
@@ -50,9 +73,9 @@ public class Principal_prueba {
 
 		//Closign
 		A.setDatos(D);
-		A.GuardarLista();*/
+		A.GuardarLista();
 		//---
-
+*/
 		//Open
 		Archivo A = Archivo_Unico.getArchivo();
 		A.AbrirLista();
@@ -60,10 +83,9 @@ public class Principal_prueba {
 		//---
 		
 		int i;
-
-		System.out.println(((Evento)(D.lista_eventos.get(0))).getOrganizador().getApellido());
-		for (i = 0; i < D.lista_personas.size(); i++) {
-			System.out.println(((Persona) D.lista_personas.get(i)).getNombre());
+		
+		for (i = 0; i < D.lista_auspiciantes.size(); i++) {
+			System.out.println(((Auspiciante) D.lista_auspiciantes.get(i)).getNombre());
 		}
 
 	}

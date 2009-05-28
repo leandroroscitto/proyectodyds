@@ -1,10 +1,18 @@
 package interfaces;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
+import base_datos.Archivo_persona;
+
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
+import com.sun.org.apache.bcel.internal.generic.LSTORE;
+
+import datos.Evento;
+import datos.Persona;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -29,7 +37,8 @@ public class frm_abm_eventos extends javax.swing.JFrame {
 		}
 	}
 
-
+	private Archivo_persona personas = new Archivo_persona();
+	
 	private static final long serialVersionUID = 1L;
 	private pnl_botones_ac pnl_botones_ac1;
 	private pnl_atrib_evt pnl_atrib_evt1;
@@ -82,7 +91,7 @@ public class frm_abm_eventos extends javax.swing.JFrame {
 				pnl_atrib_evt1.setPreferredSize(new java.awt.Dimension(477, 116));
 			}
 			{
-				pnl_lista_responsables1 = new pnl_lista_responsables();
+				pnl_lista_responsables1 = new pnl_lista_responsables(this);
 				getContentPane().add(pnl_lista_responsables1, new AnchorConstraint(127, 5, 546, 5, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS));
 				pnl_lista_responsables1.setPreferredSize(new java.awt.Dimension(477, 172));
 				pnl_lista_responsables1.setMinimumSize(new java.awt.Dimension(210, 224));
@@ -93,11 +102,16 @@ public class frm_abm_eventos extends javax.swing.JFrame {
 				pnl_lista_auspicios1.setPreferredSize(new java.awt.Dimension(477, 175));
 			}
 			pack();
+			
 			this.setSize(495, 575);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
 	
 	private void thisWindowClosing(WindowEvent evt) {
 		System.out.println("this.windowClosed, event="+evt);

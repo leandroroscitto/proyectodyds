@@ -1,4 +1,6 @@
 package interfaces;
+import base_datos.Archivo;
+
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.GroupLayout;

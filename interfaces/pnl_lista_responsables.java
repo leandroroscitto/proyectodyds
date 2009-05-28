@@ -1,8 +1,12 @@
 package interfaces;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -11,8 +15,14 @@ import javax.swing.ListModel;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 
+import base_datos.Archivo_Evento;
+import base_datos.Archivo_persona;
+
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
+
+import datos.Evento;
+import datos.Persona;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -37,27 +47,26 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 		}
 	}
 
-
+	private Archivo_persona personas = new Archivo_persona();
+	
 	public static final long serialVersionUID = 1L;
 	public JList lst_responsables;
 	public JButton btn_agregar_resp;
 	public JButton btn_quitar_resp;
 	public JPanel pnl_botones_lst_resp;
 
-	/**
-	* Auto-generated main method to display this 
-	* JPanel inside a new JFrame.
-	*/
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		frame.getContentPane().add(new pnl_lista_responsables());
-		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frame.pack();
-		frame.setVisible(true);
+	private JFrame Parent;
+	private ArrayList lista_responsables = new ArrayList();
+		
+	
+	public pnl_lista_responsables(){
+		super();
+		initGUI();
 	}
 	
-	public pnl_lista_responsables() {
-		super();
+	public pnl_lista_responsables(JFrame P) {
+		super();		
+		Parent = P;
 		initGUI();
 	}
 	
@@ -71,7 +80,7 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 			{
 				ListModel lst_responsablesModel = 
 					new DefaultComboBoxModel(
-							new String[] { "Item One", "Item Two" });
+							new String[] { });
 				lst_responsables = new JList();
 				this.add(lst_responsables, new AnchorConstraint(25, 15, 48, 15, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS));
 				lst_responsables.setModel(lst_responsablesModel);
@@ -90,7 +99,13 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 					btn_agregar_resp = new JButton();
 					pnl_botones_lst_resp.add(btn_agregar_resp);
 					btn_agregar_resp.setText("Agregar Responsable");
-					btn_agregar_resp.setPreferredSize(new java.awt.Dimension(172, 26));
+					btn_agregar_resp.setPreferredSize(new java.awt.Dimension(172, 26));				
+					btn_agregar_resp.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							btn_agregar_respActionPerformed(evt);
+						}
+					});
+
 				}
 				{
 					btn_quitar_resp = new JButton();
@@ -103,6 +118,34 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	
+	public void agregar_a_lista(Persona p){
+		lista_responsables.add(p);
+		DefaultListModel modelo = new DefaultListModel();
+		
+		int cant = lista_responsables.size();		
+		for (int i = 0; i< cant; i++){			
+			modelo.addElement(((Persona)lista_responsables.get(i)).getNombre());			
+		}	
+		lst_responsables.setModel(modelo);
+	
+		
+	}
+	
+	private void btn_agregar_respActionPerformed(ActionEvent evt) {
+		System.out.println("btn_agregar_resp.actionPerformed, event="+evt);
+		
+		dlg_reg_resp dlg_responsables = new dlg_reg_resp(this);
+		
+		dlg_responsables.setVisible(true);
+		
+		
+		
+		
+		
 	}
 
 }

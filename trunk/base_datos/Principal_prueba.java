@@ -13,7 +13,7 @@ public class Principal_prueba {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Datos D = new Datos();
+		/*Datos D = new Datos();
 		D.lista_personas = new ArrayList();
 		D.lista_eventos = new ArrayList();
 
@@ -50,12 +50,13 @@ public class Principal_prueba {
 
 		//Closign
 		A.setDatos(D);
-		A.GuardarLista();
+		A.GuardarLista();*/
 		//---
 
 		//Open
+		Archivo A = Archivo_Unico.getArchivo();
 		A.AbrirLista();
-		D = A.getDatos();
+		Datos D = A.getDatos();
 		//---
 		
 		int i;

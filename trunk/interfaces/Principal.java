@@ -27,7 +27,6 @@ import javax.swing.border.TitledBorder;
 
 import datos.Evento;
 
-import base_datos.Archivo_Evento;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -52,8 +51,7 @@ public class Principal extends javax.swing.JFrame {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-	private Archivo_Evento eventos = new Archivo_Evento();
+	}	
 
 	private JTabbedPane pestaña_principal;
 	private JPanel pnl_detalles_botones_eventos;
@@ -92,11 +90,7 @@ public class Principal extends javax.swing.JFrame {
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
-	public static void main(String[] args) {
-		Principal inst = new Principal();
-		inst.setVisible(true);
-		inst.setEnabled(true);
-	}
+	
 	
 	public Principal() {
 		super();
@@ -335,24 +329,12 @@ public class Principal extends javax.swing.JFrame {
 					pestaña_principal.addTab("Auspiciantes", null, pnl_auspiciantes, null);
 				}
 			}
-			pack();
-			cargarEventos();
+			pack();	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	private void cargarEventos(){
-		DefaultListModel modelo = new DefaultListModel();
-		
-		eventos.AbrirLista();
-		Evento e = eventos.primerEvento();		
-		while (e != null){			
-			modelo.addElement(e.getNombre());
-			e = eventos.siguienteEvento();
-		}				  
-		lst_eventos.setModel(modelo);		
-	}
 	
 	
 	private void btn_crear_eventoMouseClicked(MouseEvent evt) {

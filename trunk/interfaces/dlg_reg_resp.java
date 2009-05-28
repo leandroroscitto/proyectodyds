@@ -14,6 +14,7 @@ import javax.swing.JComponent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -24,9 +25,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.text.TabExpander;
 
-import base_datos.Archivo_persona;
+
 
 import datos.Persona;
+import sys.Sistema;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -49,7 +51,7 @@ public class dlg_reg_resp extends javax.swing.JDialog {
 	public JButton btn_agregar_resp;
 	public JPanel pnl_botones;
 	
-	private Archivo_persona personas = new Archivo_persona();
+	
 	
 	
 	// Componentes
@@ -86,7 +88,7 @@ public class dlg_reg_resp extends javax.swing.JDialog {
 	private void initGUI() {
 		try {
 			{
-				personas.AbrirLista();
+				
 				GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
 				getContentPane().setLayout(thisLayout);
 				this.setTitle("Registro de Responsables");
@@ -138,6 +140,11 @@ public class dlg_reg_resp extends javax.swing.JDialog {
 						btn_cancelar = new JButton();
 						pnl_botones.add(btn_cancelar);
 						btn_cancelar.setText("Cancelar");
+						btn_cancelar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								btn_cancelarActionPerformed(evt);
+							}
+						});
 					}
 				}
 					thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
@@ -154,7 +161,7 @@ public class dlg_reg_resp extends javax.swing.JDialog {
 						    .addComponent(pnl_botones, GroupLayout.Alignment.LEADING, 0, 531, Short.MAX_VALUE))
 						.addContainerGap());
 			}
-			pack();
+			pack();		
 			cargarResponsables();
 			this.setSize(565, 205);
 		} catch (Exception e) {
@@ -162,24 +169,22 @@ public class dlg_reg_resp extends javax.swing.JDialog {
 		}
 	}
 	
-	private void cargarResponsables(){
-		
-		
-		Persona p = personas.primerPersona();		
-		
-		int fila = -1;	
-		
-		while (p != null){
-			fila++;			
-			tbl_personas.setValueAt(p.getNombre(),fila,0);			
-			tbl_personas.setValueAt(p.getApellido(),fila,1);
-			tbl_personas.setValueAt(p.getEmail(),fila,2);
-			responsables.add(p);
-			p = personas.siguientePersona();						
+	
+
+	
+	private void cargarResponsables(){		
+		ArrayList responsables = sys.Sistema.D.lista_personas;		
+				
+		int cant = responsables.size();		
+		Persona p = null;
+		for (int i = 0; i<cant; i++){
+			p = (Persona) responsables.get(i);
+			tbl_personas.setValueAt(p.getNombre(),i,0);			
+			tbl_personas.setValueAt(p.getApellido(),i,1);
+			tbl_personas.setValueAt(p.getEmail(),i,2);								
 		}
 		
 	}
-
 	
 	
 	private void thisWindowClosing(WindowEvent evt) {
@@ -191,10 +196,17 @@ public class dlg_reg_resp extends javax.swing.JDialog {
 		System.out.println("btn_agregar_resp.actionPerformed, event="+evt);
 		if (Parent1 != null){
 			int i = tbl_personas.getSelectedRow();
-			Persona p = (Persona) responsables.get(i);
-			Parent1.agregar_a_lista(p);
+			Persona p = (Persona) sys.Sistema.D.lista_personas.get(i);
+			if (!Parent1.agregar_a_lista(p)){
+				JOptionPane.showMessageDialog(null, "Ya Existe ese responsable en la lista");
+			}
 		}
 		
+	}
+	
+	private void btn_cancelarActionPerformed(ActionEvent evt) {
+		System.out.println("btn_cancelar.actionPerformed, event="+evt);
+		setVisible(false);
 	}
 
 }

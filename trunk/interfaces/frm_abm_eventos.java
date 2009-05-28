@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
-import base_datos.Archivo_persona;
 
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
@@ -37,7 +36,7 @@ public class frm_abm_eventos extends javax.swing.JFrame {
 		}
 	}
 
-	private Archivo_persona personas = new Archivo_persona();
+	
 	
 	private static final long serialVersionUID = 1L;
 	private pnl_botones_ac pnl_botones_ac1;

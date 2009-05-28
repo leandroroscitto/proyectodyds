@@ -15,8 +15,6 @@ import javax.swing.ListModel;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 
-import base_datos.Archivo_Evento;
-import base_datos.Archivo_persona;
 
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
@@ -47,7 +45,7 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 		}
 	}
 
-	private Archivo_persona personas = new Archivo_persona();
+
 	
 	public static final long serialVersionUID = 1L;
 	public JList lst_responsables;
@@ -120,19 +118,38 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 		}
 	}
 	
+	private boolean pertenece(Persona p, ArrayList A){
+		boolean resultado = false;
+		int tam = A.size();
+		int i = 0;
+		while ((i<tam) && (!resultado)){
+			if (p == ((Persona)A.get(i))){
+				resultado = true;
+			}else{i++;}
+		}
+		return resultado;		
+	}
+
 	
+	// devuelve true si se pudo agregar a la lista y false si ya existe
+	// ese responsable en la lista 
 	
-	public void agregar_a_lista(Persona p){
-		lista_responsables.add(p);
-		DefaultListModel modelo = new DefaultListModel();
-		
-		int cant = lista_responsables.size();		
-		for (int i = 0; i< cant; i++){			
-			modelo.addElement(((Persona)lista_responsables.get(i)).getNombre());			
-		}	
-		lst_responsables.setModel(modelo);
-	
-		
+	public boolean agregar_a_lista(Persona p){
+		boolean result; 
+		if (pertenece(p, lista_responsables)){
+			result = false;
+		}else{
+			lista_responsables.add(p);
+			result = true;
+			DefaultListModel modelo = new DefaultListModel();
+			
+			int cant = lista_responsables.size();		
+			for (int i = 0; i< cant; i++){			
+				modelo.addElement(((Persona)lista_responsables.get(i)).getNombre());			
+			}	
+			lst_responsables.setModel(modelo);
+		}
+		return result;
 	}
 	
 	private void btn_agregar_respActionPerformed(ActionEvent evt) {

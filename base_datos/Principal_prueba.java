@@ -1,9 +1,11 @@
 package base_datos;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import datos.Actividad;
 import datos.Auspiciante;
 import datos.Persona;
 import datos.Evento;
@@ -15,13 +17,14 @@ public class Principal_prueba {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		/*Datos D = new Datos();
+		Datos D = new Datos();
 		D.lista_personas = new ArrayList();
 		D.lista_eventos = new ArrayList();
 		D.lista_auspiciantes = new ArrayList();
+		D.lista_actividades = new ArrayList();
 
 		Archivo A = Archivo_Unico.getArchivo();
-
+		
 		Persona p1 = new Persona(1, "Pepe", "Gonzales", "35669785",
 				"pepe@gmail.com");
 		Persona p2 = new Persona(2, "Carlos", "Perez", "23467412",
@@ -64,23 +67,51 @@ public class Principal_prueba {
 		Evento e3 = new Evento(3, "Nombre 3", "Organizador 3");
 		Evento e4 = new Evento(4, "Nombre 4", "Organizador 4");
 		Evento e5 = new Evento(5, "Nombre 5", "Organizador 5");
-
+		
 		D.lista_eventos.add(e1);
 		D.lista_eventos.add(e2);
 		D.lista_eventos.add(e3);
 		D.lista_eventos.add(e4);
 		D.lista_eventos.add(e5);
+		
+		Actividad act1 = new Actividad(0,"Act 1",p1,e1,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act2 = new Actividad(1,"Act 2",p2,e2,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act3 = new Actividad(2,"Act 3",p3,e3,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act4 = new Actividad(3,"Act 4",p4,e4,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act5 = new Actividad(4,"Act 5",p5,e5,new Date(2009,10,23),new Date(2009,10,24));
+		
+		Actividad act6 = new Actividad(4,"Act 6",p5,e5,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act7 = new Actividad(4,"Act 7",p5,e5,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act8 = new Actividad(4,"Act 8",p5,e5,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act9 = new Actividad(4,"Act 9",p5,e5,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act10 = new Actividad(4,"Act 10",p5,e5,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act11 = new Actividad(4,"Act 11",p5,e5,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act12= new Actividad(4,"Act 12",p5,e5,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act13= new Actividad(4,"Act 12",p5,e5,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act14= new Actividad(4,"Act 12",p5,e5,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act15= new Actividad(4,"Act 12",p5,e5,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act16= new Actividad(4,"Act 12",p5,e5,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act17= new Actividad(4,"Act 12",p5,e5,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act18= new Actividad(4,"Act 12",p5,e5,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act19= new Actividad(4,"Act 12",p5,e5,new Date(2009,10,23),new Date(2009,10,24));
+		
+		D.lista_actividades.add(act1);
+		D.lista_actividades.add(act2);
+		D.lista_actividades.add(act3);
+		D.lista_actividades.add(act4);
+		D.lista_actividades.add(act5);
+		
+		act1.agregarResp(p2);
 
-		//Closign
+		// Closign
 		A.setDatos(D);
 		A.GuardarLista();
-		//---
-*/
-		//Open
-		Archivo A = Archivo_Unico.getArchivo();
+		// ---
+
+		// Open
 		A.AbrirLista();
-		Datos D = A.getDatos();
-		//---
+		D = A.getDatos();
+		// ---
 		
 		int i;
 		

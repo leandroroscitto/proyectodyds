@@ -9,22 +9,20 @@ import interfaces.Principal;
 
 public class Sistema {
 
-	//Parametros
-	
+	// Parametros
+
 	public static Datos D;
-	
-	public static void main(String[] args) {		
-		
-		Archivo A = Archivo_Unico.getArchivo();		
-		A.AbrirLista();		
-		
-		D = A.getDatos();		
-		
-		
-		
+
+	public static void main(String[] args) {
+
+		Archivo A = Archivo_Unico.getArchivo();
+		A.AbrirLista();
+
+		D = A.getDatos();
+
 		Principal inst = new Principal();
 		inst.setVisible(true);
-		inst.setEnabled(true);		
+		inst.setEnabled(true);
 	}
 
 }

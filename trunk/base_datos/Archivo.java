@@ -1,152 +1,71 @@
 package base_datos;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
-import java.io.*;
+import javax.swing.JOptionPane;
 
-import datos.Elemento_Serializable;
+public class Archivo {
 
-public abstract class Archivo {
-	
-	private ArrayList lista;
-	private int actual;	
-	private int tam;
-	protected String Nombre;	
+	// < OPERACIONES DE MANEJO DE ARCHIVOS >
 
-	
-	public Archivo(){
-		lista = new ArrayList();
-		actual = 0;
-		tam = 0;
+	private Datos dat;
+
+	Archivo() {
 	}
-	//< OPERACIONES DE MANEJO DE ARCHIVOS >	
+
+	public void setDatos(Datos d){
+		dat=d;
+	}
 	
-	
-	
-	
-	protected Elemento_Serializable primerElemento(){
-		if (tam == 0){
-			return null;
-		}else {
-			actual = 1;
-			return (Elemento_Serializable)lista.get(0);
+	public Datos getDatos(){
+		return dat;
+	}
+
+	public void AbrirLista() {
+		File file;
+		ObjectInputStream obj;
+
+		try {
+			file = new File("Archivos/Datos.dat");
+			obj = new ObjectInputStream(new FileInputStream(file));
+			dat = (Datos) obj.readObject();
+			obj.close();
+		} catch (FileNotFoundException e) {
+			// TODO: Si no encuentra el archivo, lo crea e inicializa todas las listas.
+			JOptionPane.showMessageDialog(null, "No se encontró el archivo");
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null,
+					"No se pudo accceder al archivo");
+		} catch (ClassNotFoundException e) {
+			JOptionPane.showMessageDialog(null,
+					"Error interno (Clase no encontrada)");
 		}
 	}
-	
-	protected Elemento_Serializable siguienteElemento(){
-		
-		if (actual == tam){
-			return null;
-		}else{
-			actual++;
-			return (Elemento_Serializable) lista.get(actual-1);
-		}
-	}
-	
-	
-	
-	
-	
-	protected void insertarElemento(Elemento_Serializable ele){
-		lista.add(tam, ele);
-		tam++;
-		
-	}
-	
-	
-	
-	protected ArrayList obtenerLista(){
-		return lista;
-	}
-	
-	protected int cantElementos(){
-		return tam;
-	}
-	
-	
-	
+
 	/**
-	 * Recupera un Elemento de la lista partir de su clave.
-	 * @param c entero, clave del elemento que se quiere devolver.
-	 * @return boolean, rotorna el elemento en caso que lo encuentre y 
-	 * null caso contrario
+	 * 
 	 */
-	public Elemento_Serializable recuperarElemento (int c)
-	{
-		int pos = 0;	
-		boolean encontre;
-		Elemento_Serializable u;		
-		if (!this.lista.isEmpty()){
-		    u = (Elemento_Serializable) this.lista.get(pos);
-		    encontre = ( u.getClave() == c);		    
-		    while ( (!encontre) && ((pos+1) < lista.size()) )	      		
-		    {   	
-		    	pos++;
-		    	u = (Elemento_Serializable) this.lista.get(pos);
-		    	encontre = ( u.getClave() == c); 
-		    	
-		    }
-              		  
-         if (encontre)
-        	 return u;
-        	 else return null;
+	public void GuardarLista() {
+		ObjectOutputStream obj;
+		try {
+			obj = new ObjectOutputStream(new FileOutputStream(
+					"Archivos/Datos.dat"));
+			obj.writeObject(dat);
+			obj.close();
+
 		}
-		else return null;
-        	 
-		    
-	}	
-	
-	
-	
-	/**
-     * 
-     *
-     */
-	
-    public void AbrirLista(){
-      File file;    
-      ObjectInputStream obj;
-     
-     try {     
-      file = new File("Archivos/"+Nombre+".dat");   
-      obj = new ObjectInputStream(new FileInputStream(file));
-      lista = (ArrayList)obj.readObject();
-      obj.close();
-      tam = lista.size();
-     }
-     catch(FileNotFoundException e){
-    
-     }
-     catch(IOException e){
-         
-     }
-     catch(ClassNotFoundException e){
-         
-     } 
-    }
-    
-    
-    
-    /**
-     *
-     **/
-    public void GuardarLista(){
-      ObjectOutputStream obj;      
-    try {      	   	
-           obj=new ObjectOutputStream(new FileOutputStream("Archivos/"+Nombre+".dat"));
-           obj.writeObject(lista);
-           obj.close();      
-     
-    }
-     
-    catch(FileNotFoundException e){
-     //mostrar dialogos con el mensaje de error   
-    }
-    catch(IOException e){
-        
-    }   
-   }	
-	
-	
+
+		catch (FileNotFoundException e) {
+			// mostrar dialogos con el mensaje de error
+		} catch (IOException e) {
+
+		}
+	}
 
 }

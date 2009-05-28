@@ -127,7 +127,7 @@ public class frm_abm_actividades extends javax.swing.JFrame {
 						});
 			}
 			{
-				pnl_lista_responsables1 = new pnl_lista_responsables();
+				pnl_lista_responsables1 = new pnl_lista_responsables(Parent);
 				getContentPane().add(
 						pnl_lista_responsables1,
 						new AnchorConstraint(695, 5, 52, 5,

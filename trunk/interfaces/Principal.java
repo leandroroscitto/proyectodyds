@@ -132,7 +132,7 @@ public class Principal extends javax.swing.JFrame {
 						pnl_lista_eventos.setBorder(BorderFactory.createTitledBorder(null, "Eventos", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION));
 						{
 							ListModel lst_eventosModel = new DefaultComboBoxModel(
-								new String[] { "Item One", "Item Two" });
+								new String[] { });
 							lst_eventos = new JList();
 							pnl_lista_eventos.add(lst_eventos, BorderLayout.CENTER);
 							lst_eventos.setVisibleRowCount(10);
@@ -346,9 +346,8 @@ public class Principal extends javax.swing.JFrame {
 		DefaultListModel modelo = new DefaultListModel();
 		
 		eventos.AbrirLista();
-		Evento e = eventos.primerEvento(); 
-		e = eventos.primerEvento();
-		while (e != null){
+		Evento e = eventos.primerEvento();		
+		while (e != null){			
 			modelo.addElement(e.getNombre());
 			e = eventos.siguienteEvento();
 		}				  

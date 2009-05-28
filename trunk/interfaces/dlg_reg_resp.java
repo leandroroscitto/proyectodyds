@@ -1,8 +1,12 @@
 package interfaces;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -18,6 +22,11 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import javax.swing.text.TabExpander;
+
+import base_datos.Archivo_persona;
+
+import datos.Persona;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -40,8 +49,13 @@ public class dlg_reg_resp extends javax.swing.JDialog {
 	public JButton btn_agregar_resp;
 	public JPanel pnl_botones;
 	
+	private Archivo_persona personas = new Archivo_persona();
+	
+	
 	// Componentes
-	private JFrame Parent;
+	private ArrayList responsables = new ArrayList();;
+	private pnl_lista_responsables Parent1;
+	private JFrame Parent2;
 
 	{
 		//Set Look & Feel
@@ -53,28 +67,26 @@ public class dlg_reg_resp extends javax.swing.JDialog {
 	}
 
 
-	/**
-	* Auto-generated main method to display this JDialog
-	*/
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				JFrame frame = new JFrame();
-				dlg_reg_resp inst = new dlg_reg_resp(frame);
-				inst.setVisible(true);
-			}
-		});
+	
+	
+	public dlg_reg_resp(pnl_lista_responsables P) {
+		super();
+		Parent1 = P;
+		Parent2 = null;		
+		initGUI();
 	}
 	
 	public dlg_reg_resp(JFrame P) {
 		super();
-		Parent =P;
+		Parent1 = null;
+		Parent2 = P;
 		initGUI();
 	}
 	
 	private void initGUI() {
 		try {
 			{
+				personas.AbrirLista();
 				GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
 				getContentPane().setLayout(thisLayout);
 				this.setTitle("Registro de Responsables");
@@ -111,6 +123,11 @@ public class dlg_reg_resp extends javax.swing.JDialog {
 						btn_agregar_resp = new JButton();
 						pnl_botones.add(btn_agregar_resp);
 						btn_agregar_resp.setText("Agregar Responsable");
+						btn_agregar_resp.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								btn_agregar_respActionPerformed(evt);
+							}
+						});
 					}
 					{
 						btn_registrar_pers = new JButton();
@@ -138,17 +155,46 @@ public class dlg_reg_resp extends javax.swing.JDialog {
 						.addContainerGap());
 			}
 			pack();
+			cargarResponsables();
 			this.setSize(565, 205);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+	private void cargarResponsables(){
+		
+		
+		Persona p = personas.primerPersona();		
+		
+		int fila = -1;	
+		
+		while (p != null){
+			fila++;			
+			tbl_personas.setValueAt(p.getNombre(),fila,0);			
+			tbl_personas.setValueAt(p.getApellido(),fila,1);
+			tbl_personas.setValueAt(p.getEmail(),fila,2);
+			responsables.add(p);
+			p = personas.siguientePersona();						
+		}
+		
+	}
+
+	
+	
 	private void thisWindowClosing(WindowEvent evt) {
 		System.out.println("this.windowClosing, event="+evt);
-		Parent.setEnabled(true);
-		Parent.requestFocus();
 		setVisible(false);
+	}
+	
+	private void btn_agregar_respActionPerformed(ActionEvent evt) {
+		System.out.println("btn_agregar_resp.actionPerformed, event="+evt);
+		if (Parent1 != null){
+			int i = tbl_personas.getSelectedRow();
+			Persona p = (Persona) responsables.get(i);
+			Parent1.agregar_a_lista(p);
+		}
+		
 	}
 
 }

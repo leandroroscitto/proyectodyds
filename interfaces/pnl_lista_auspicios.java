@@ -1,5 +1,7 @@
 package interfaces;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -73,7 +75,7 @@ public class pnl_lista_auspicios extends javax.swing.JPanel {
 			{
 				ListModel lst_auspiciosModel = 
 					new DefaultComboBoxModel(
-							new String[] { "Item One", "Item Two" });
+							new String[] {  });
 				lst_auspicios = new JList();
 				this.add(lst_auspicios, new AnchorConstraint(25, 15, 48, 15, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS));
 				lst_auspicios.setModel(lst_auspiciosModel);
@@ -92,6 +94,11 @@ public class pnl_lista_auspicios extends javax.swing.JPanel {
 					pnl_botones_lst_aus.add(btn_agregar_aus);
 					btn_agregar_aus.setText("Agregar Auspicio");
 					btn_agregar_aus.setPreferredSize(new java.awt.Dimension(135, 26));
+					btn_agregar_aus.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							btn_agregar_ausActionPerformed(evt);
+						}
+					});
 				}
 				{
 					btn_modificar_aus = new JButton();
@@ -109,6 +116,14 @@ public class pnl_lista_auspicios extends javax.swing.JPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void btn_agregar_ausActionPerformed(ActionEvent evt) {
+		System.out.println("btn_agregar_aus.actionPerformed, event="+evt);
+		
+		dlg_registro_ausp dlg_auspicions = new dlg_registro_ausp(this);
+		
+		dlg_auspicions.setVisible(true);
 	}
 
 }

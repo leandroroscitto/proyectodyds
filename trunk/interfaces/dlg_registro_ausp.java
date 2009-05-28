@@ -49,7 +49,7 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 	public JPanel pnl_datos_ausp;
 	
 	// Componentes
-	private JFrame Parent;
+	private pnl_lista_auspicios Parent;
 
 	{
 		//Set Look & Feel
@@ -58,23 +58,9 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-
-	/**
-	* Auto-generated main method to display this JDialog
-	*/
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				JFrame frame = new JFrame();
-				dlg_registro_ausp inst = new dlg_registro_ausp(frame);
-				inst.setVisible(true);
-			}
-		});
-	}
+	}	
 	
-	public dlg_registro_ausp(JFrame P) {
+	public dlg_registro_ausp(pnl_lista_auspicios P) {
 		super();
 		Parent = P;
 		initGUI();
@@ -106,7 +92,7 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 					{
 						ListModel lst_auspiciantesModel = 
 							new DefaultComboBoxModel(
-									new String[] { "Item One", "Item Two" });
+									new String[] {  });
 						lst_auspiciantes = new JList();
 						pnl_lst_ausp.add(lst_auspiciantes, new AnchorConstraint(118, 5, 715, 5, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS));
 						lst_auspiciantes.setModel(lst_auspiciantesModel);

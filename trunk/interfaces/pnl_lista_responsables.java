@@ -10,6 +10,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
 import javax.swing.WindowConstants;
@@ -111,6 +112,11 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 					pnl_botones_lst_resp.add(btn_quitar_resp);
 					btn_quitar_resp.setText("Quitar Responsable");
 					btn_quitar_resp.setPreferredSize(new java.awt.Dimension(172, 26));
+					btn_quitar_resp.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							btn_quitar_respActionPerformed(evt);
+						}
+					});
 				}
 			}
 		} catch (Exception e) {
@@ -129,6 +135,18 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 		}
 		return resultado;		
 	}
+	
+	
+	//Muestra la lista de responsables en la interfaz
+	private void mostrarLista(){	
+		DefaultListModel modelo = new DefaultListModel();
+		
+		int cant = lista_responsables.size();		
+		for (int i = 0; i< cant; i++){			
+			modelo.addElement(((Persona)lista_responsables.get(i)).getNombre());			
+		}	
+		lst_responsables.setModel(modelo);		
+	}
 
 	
 	// devuelve true si se pudo agregar a la lista y false si ya existe
@@ -141,16 +159,10 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 		}else{
 			lista_responsables.add(p);
 			result = true;
-			DefaultListModel modelo = new DefaultListModel();
-			
-			int cant = lista_responsables.size();		
-			for (int i = 0; i< cant; i++){			
-				modelo.addElement(((Persona)lista_responsables.get(i)).getNombre());			
-			}	
-			lst_responsables.setModel(modelo);
+			mostrarLista();
 		}
 		return result;
-	}
+	}	
 	
 	private void btn_agregar_respActionPerformed(ActionEvent evt) {
 		System.out.println("btn_agregar_resp.actionPerformed, event="+evt);
@@ -161,6 +173,19 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 		
 		
 		
+		
+		
+	}
+	
+	private void btn_quitar_respActionPerformed(ActionEvent evt) {
+		System.out.println("btn_quitar_resp.actionPerformed, event="+evt);
+		int i = lst_responsables.getSelectedIndex();
+		if (i == -1){
+			JOptionPane.showMessageDialog(null, "Seleccione un responsable de la lista");
+		}else{
+			lista_responsables.remove(i);
+			mostrarLista();
+		}
 		
 		
 	}

@@ -4,9 +4,9 @@ public class Evento extends Elemento_Serializable{
 	
 	private int ID;
 	private String Nombre;
-	private Persona Organizador; //Corregir por String	
+	private String Organizador; //Corregir por String	
 	
-	public Evento(int i, String n, Persona p){
+	public Evento(int i, String n, String p){
 		ID = i;
 		Nombre = n;
 		Organizador = p;
@@ -28,11 +28,11 @@ public class Evento extends Elemento_Serializable{
 		Nombre = nombre;
 	}
 
-	public Persona getOrganizador() {
+	public String getOrganizador() {
 		return Organizador;
 	}
 
-	public void setOrganizador(Persona organizador) {
+	public void setOrganizador(String organizador) {
 		Organizador = organizador;
 	}
 

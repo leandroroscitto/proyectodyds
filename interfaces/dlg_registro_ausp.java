@@ -1,10 +1,18 @@
 package interfaces;
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
+
+import datos.Auspiciante;
+import datos.Persona;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
@@ -12,13 +20,17 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
@@ -50,6 +62,7 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 	
 	// Componentes
 	private pnl_lista_auspicios Parent;
+	private JScrollPane jScrollPane1;
 
 	{
 		//Set Look & Feel
@@ -83,6 +96,7 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 					AnchorLayout pnl_lst_auspLayout = new AnchorLayout();
 					pnl_lst_ausp.setLayout(pnl_lst_auspLayout);
 					pnl_lst_ausp.setBorder(BorderFactory.createTitledBorder("Lista de Auspiciantes"));
+					pnl_lst_ausp.setAutoscrolls(true);
 					{
 						btn_crear_ausp = new JButton();
 						pnl_lst_ausp.add(btn_crear_ausp, new AnchorConstraint(751, 99, 10, 101, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS));
@@ -90,14 +104,20 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 						btn_crear_ausp.setPreferredSize(new java.awt.Dimension(144, 28));
 					}
 					{
-						ListModel lst_auspiciantesModel = 
-							new DefaultComboBoxModel(
-									new String[] {  });
-						lst_auspiciantes = new JList();
-						pnl_lst_ausp.add(lst_auspiciantes, new AnchorConstraint(118, 5, 715, 5, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS));
-						lst_auspiciantes.setModel(lst_auspiciantesModel);
-						lst_auspiciantes.setPreferredSize(new java.awt.Dimension(403, 108));
-						lst_auspiciantes.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+						jScrollPane1 = new JScrollPane();
+						pnl_lst_ausp.add(jScrollPane1, new AnchorConstraint(115, 7, 711, 5, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS));
+						jScrollPane1.setPreferredSize(new java.awt.Dimension(334, 90));
+						{
+							ListModel lst_auspiciantesModel = 
+								new DefaultComboBoxModel(
+										new String[] {  });
+							lst_auspiciantes = new JList();
+							jScrollPane1.setViewportView(lst_auspiciantes);
+							lst_auspiciantes.setModel(lst_auspiciantesModel);										        
+							lst_auspiciantes.setPreferredSize(new java.awt.Dimension(334, 90));
+							lst_auspiciantes.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+
+						}
 					}
 				}
 				{
@@ -138,12 +158,20 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 						    .addComponent(lb_arancel, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(27, 27));
 				}
+				
+					
+				
 				{
 					pnl_botones = new JPanel();
 					{
 						btn_agregar_ausp = new JButton();
 						pnl_botones.add(btn_agregar_ausp);
 						btn_agregar_ausp.setText("Agregar Auspicio");
+						btn_agregar_ausp.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								btn_agregar_auspActionPerformed(evt);
+							}
+						});
 					}
 					{
 						btn_canelar = new JButton();
@@ -163,16 +191,40 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 			}
 			pack();
 			this.setSize(352, 271);
+			mostrarListaAuspiciantes();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+	
+	private void mostrarListaAuspiciantes(){
+		DefaultListModel modelo = new DefaultListModel();
+		
+		ArrayList lista_auspiciantes = sys.Sistema.D.lista_auspiciantes;
+		
+		int cant = lista_auspiciantes.size();		
+		for (int i = 0; i< cant; i++){			
+			modelo.addElement(((Auspiciante)lista_auspiciantes.get(i)).getNombre());			
+		}	
+		lst_auspiciantes.setModel(modelo);	
+	}
 	private void thisWindowClosing(WindowEvent evt) {
 		System.out.println("this.windowClosing, event="+evt);
 		Parent.setEnabled(true);
 		Parent.requestFocus();
 		setVisible(false);
+	}
+	
+	private void btn_agregar_auspActionPerformed(ActionEvent evt) {
+		System.out.println("btn_agregar_ausp.actionPerformed, event="+evt);
+		int i = lst_auspiciantes.getSelectedIndex();
+		if (i == -1){
+			JOptionPane.showMessageDialog(null, "Seleccione un auspiciante de la lista");
+		}else{
+				String tipo = txf_tipo_ausp.getText();
+			
+		}
 	}
 
 }

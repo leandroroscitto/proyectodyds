@@ -181,7 +181,7 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 		System.out.println("btn_quitar_resp.actionPerformed, event="+evt);
 		int i = lst_responsables.getSelectedIndex();
 		if (i == -1){
-			JOptionPane.showMessageDialog(null, "Seleccione un responsable de la lista");
+			JOptionPane.showMessageDialog(null, "Seleccione un responsable de la lista");			
 		}else{
 			lista_responsables.remove(i);
 			mostrarLista();

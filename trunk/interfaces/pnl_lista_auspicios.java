@@ -2,12 +2,15 @@ package interfaces;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
 import javax.swing.WindowConstants;
@@ -15,6 +18,9 @@ import javax.swing.border.BevelBorder;
 
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
+
+import datos.Persona;
+import datos.Relaciones.Auspicio;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -46,12 +52,16 @@ public class pnl_lista_auspicios extends javax.swing.JPanel {
 	public JButton btn_modificar_aus;
 	public JButton btn_agregar_aus;
 	public JPanel pnl_botones_lst_aus;
+	
+	public ArrayList lista_auspicios = new ArrayList();
+	
+	public int modificar = -1;
 
 	/**
 	* Auto-generated main method to display this 
 	* JPanel inside a new JFrame.
 	*/
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		JFrame frame = new JFrame();
 		frame.getContentPane().add(new pnl_lista_auspicios());
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -105,12 +115,22 @@ public class pnl_lista_auspicios extends javax.swing.JPanel {
 					pnl_botones_lst_aus.add(btn_modificar_aus);
 					btn_modificar_aus.setText("Modificar Auspicio");
 					btn_modificar_aus.setPreferredSize(new java.awt.Dimension(140, 26));
+					btn_modificar_aus.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							btn_modificar_ausActionPerformed(evt);
+						}
+					});
 				}
 				{
 					btn_quitar_aus = new JButton();
 					pnl_botones_lst_aus.add(btn_quitar_aus);
 					btn_quitar_aus.setText("Quitar Auspicio");
 					btn_quitar_aus.setPreferredSize(new java.awt.Dimension(125, 26));
+					btn_quitar_aus.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							btn_quitar_ausActionPerformed(evt);
+						}
+					});
 				}
 			}
 		} catch (Exception e) {
@@ -118,12 +138,63 @@ public class pnl_lista_auspicios extends javax.swing.JPanel {
 		}
 	}
 	
+	public void mostrarLista(){	
+		DefaultListModel modelo = new DefaultListModel();
+		
+		int cant = lista_auspicios.size();
+		Auspicio a;
+		for (int i = 0; i< cant; i++){
+			a = (Auspicio)lista_auspicios.get(i);
+			String n_auspiciante = a.getAuspiciante().getNombre();
+			String n_tipo = a.getTipo();
+			float n_arancel = a.getArancel();
+			modelo.addElement(n_auspiciante +" "+n_tipo+" "+ n_arancel);			
+		}	
+		lst_auspicios.setModel(modelo);		
+	}	
+				
+		
+	
 	private void btn_agregar_ausActionPerformed(ActionEvent evt) {
 		System.out.println("btn_agregar_aus.actionPerformed, event="+evt);
 		
 		dlg_registro_ausp dlg_auspicions = new dlg_registro_ausp(this);
-		
+		dlg_auspicions.mostrarListaAuspiciantes(null);
 		dlg_auspicions.setVisible(true);
+	}
+	
+	
+	
+	private void btn_modificar_ausActionPerformed(ActionEvent evt) {
+		System.out.println("btn_modificar_aus.actionPerformed, event="+evt);
+		int i = lst_auspicios.getSelectedIndex();
+		if (i == -1){
+			JOptionPane.showMessageDialog(null, "Seleccione un Auspicio de la lista");
+		}else{		
+			modificar = i;
+			Auspicio a = (Auspicio) lista_auspicios.get(i);
+			dlg_registro_ausp dlg_auspicions = new dlg_registro_ausp(this);
+			dlg_auspicions.mostrarListaAuspiciantes(a);
+			dlg_auspicions.setVisible(true);			
+			
+		}
+	}
+	
+	private void btn_quitar_ausActionPerformed(ActionEvent evt) {
+		System.out.println("btn_quitar_aus.actionPerformed, event="+evt);
+		//TODO add your code for btn_quitar_aus.actionPerformed
+		int i = lst_auspicios.getSelectedIndex();
+		if (i == -1){
+			JOptionPane.showMessageDialog(null, "No ha seleccionado ningun auspicio para eliminar");
+		}else{
+			
+			int i2 = JOptionPane.showConfirmDialog(null, "Realmente quiere eliminar el Auspicio?", "Eliminar Auspicio",JOptionPane.YES_NO_OPTION );
+			if (i2 == 0){
+				lista_auspicios.remove(i);
+				mostrarLista();			
+			}
+			
+		}
 	}
 
 }

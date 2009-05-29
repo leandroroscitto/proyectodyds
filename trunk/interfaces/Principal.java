@@ -37,6 +37,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import datos.Actividad;
+import datos.Auspiciante;
 import datos.Evento;
 
 /**
@@ -93,6 +94,12 @@ public class Principal extends javax.swing.JFrame {
 	private JList lst_eventos;
 	private JPanel pnl_lista_eventos;
 	private JPanel pnl_auspiciantes;
+	private JPanel pnl_lista_auspiciantes;
+	private JList lst_auspiciantes;
+	private JButton btn_modificar_auspiciante;
+	private JButton btn_eliminar_auspiciante;
+	private JButton btn_crear_auspiciante;
+	private JScrollPane jScrollPane2;
 	private JScrollPane jScrollPane1;
 	private JPanel pnl_actividades;
 	private JPanel pnl_eventos;
@@ -114,6 +121,7 @@ public class Principal extends javax.swing.JFrame {
 		super();
 		Iniciar_comp();
 		initGUI();
+		
 	}
 
 	private void initGUI() {
@@ -298,6 +306,7 @@ public class Principal extends javax.swing.JFrame {
 									.createTitledBorder(null, "Evento",
 											TitledBorder.LEADING,
 											TitledBorder.DEFAULT_POSITION));
+							//pnl_seleccion_evento.setTabTitle("");
 							{
 								ComboBoxModel box_eventosModel = new DefaultComboBoxModel();
 								box_eventos = new JComboBox();
@@ -547,8 +556,49 @@ public class Principal extends javax.swing.JFrame {
 				}
 				{
 					pnl_auspiciantes = new JPanel();
+					pnl_auspiciantes.setLayout(null);
 					pestaña_principal.addTab("Auspiciantes", null,
 							pnl_auspiciantes, null);
+					pnl_auspiciantes.setPreferredSize(new java.awt.Dimension(459, 303));
+					{
+						pnl_lista_auspiciantes = new JPanel();
+						pnl_auspiciantes.add(pnl_lista_auspiciantes);
+						pnl_lista_auspiciantes.setBounds(0, 0, 261, 338);
+						pnl_lista_auspiciantes.setBorder(BorderFactory.createTitledBorder("Auspiciantes"));
+						{
+							jScrollPane2 = new JScrollPane();
+							pnl_lista_auspiciantes.add(jScrollPane2);
+							jScrollPane2.setPreferredSize(new java.awt.Dimension(245, 306));
+							{
+								ListModel lst_auspiciantesModel = 
+									new DefaultComboBoxModel(
+											new String[] { "Item One", "Item Two" });
+								lst_auspiciantes = new JList();
+								jScrollPane2.setViewportView(lst_auspiciantes);
+								lst_auspiciantes.setModel(lst_auspiciantesModel);
+								lst_auspiciantes.setBounds(157, 272, 228, 301);
+							}
+						}
+						//pnl_lista_auspiciantes.setTabTitle("");
+					}
+					{
+						btn_crear_auspiciante = new JButton();
+						pnl_auspiciantes.add(btn_crear_auspiciante);
+						btn_crear_auspiciante.setText("Crear Auspiciante");
+						btn_crear_auspiciante.setBounds(273, 200, 240, 28);
+					}
+					{
+						btn_eliminar_auspiciante = new JButton();
+						pnl_auspiciantes.add(btn_eliminar_auspiciante);
+						btn_eliminar_auspiciante.setText("Eliminar Auspiciante");
+						btn_eliminar_auspiciante.setBounds(273, 239, 240, 28);
+					}
+					{
+						btn_modificar_auspiciante = new JButton();
+						pnl_auspiciantes.add(btn_modificar_auspiciante);
+						btn_modificar_auspiciante.setText("Modificar Auspiciante");
+						btn_modificar_auspiciante.setBounds(273, 278, 240, 26);
+					}
 				}
 			}
 			pack();
@@ -638,10 +688,39 @@ public class Principal extends javax.swing.JFrame {
 
 	}
 
+	private void cargarEventosLst()
+	{
+	int i;
+	ArrayList lista_eventos = sys.Sistema.D.lista_eventos;
+
+	DefaultListModel mdl_list_evt = (DefaultListModel) lst_eventos.getModel(); 
+	mdl_list_evt.removeAllElements();
+	for (i = 0; i < lista_eventos.size(); i++) {
+		
+		mdl_list_evt.addElement(((Evento) (lista_eventos.get(i))).getNombre());
+	}
+	
+	//lst_eventos.setModel(mdl_list_evt);
+	}
+	
+	private void mostrarListaAuspiciantes(){
+		DefaultListModel modelo = new DefaultListModel();
+		
+		ArrayList lista_auspiciantes = sys.Sistema.D.lista_auspiciantes;
+		modelo.removeAllElements();
+		int cant = lista_auspiciantes.size();		
+		for (int i = 0; i< cant; i++){			
+			modelo.addElement(((Auspiciante)lista_auspiciantes.get(i)).getNombre());			
+		}	
+		lst_auspiciantes.setModel(modelo);	
+	}
+
 	private void ActualizarCampos() {
 		cargarEventosCB();
-		cargarActividadesLst();
+		cargarEventosLst();	
+		cargarActividadesLst();	
 		mostrarDetallesAct();
+		mostrarListaAuspiciantes();
 	}
 
 	private void btn_crear_eventoMouseClicked(MouseEvent evt) {

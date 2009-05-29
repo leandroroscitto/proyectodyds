@@ -65,11 +65,14 @@ public class Principal_prueba {
 		ArrayList r4 = new ArrayList();
 		ArrayList r5 = new ArrayList();
 		
-		Evento e1 = new Evento("Nombre 1", "Organizador 1",r1);
-		Evento e2 = new Evento("Nombre 2", "Organizador 2",r2);
-		Evento e3 = new Evento("Nombre 3", "Organizador 3",r3);
-		Evento e4 = new Evento("Nombre 4", "Organizador 4",r4);
-		Evento e5 = new Evento("Nombre 5", "Organizador 5",r5);
+		Date d = new Date();
+		
+		
+		Evento e1 = new Evento("Nombre 1", "Organizador 1",d,d,r1);
+		Evento e2 = new Evento("Nombre 2", "Organizador 2",d,d,r2);
+		Evento e3 = new Evento("Nombre 3", "Organizador 3",d,d,r3);
+		Evento e4 = new Evento("Nombre 4", "Organizador 4",d,d,r4);
+		Evento e5 = new Evento("Nombre 5", "Organizador 5",d,d,r5);
 		
 		D.lista_eventos.add(e1);
 		D.lista_eventos.add(e2);

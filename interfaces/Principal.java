@@ -11,6 +11,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -35,6 +38,9 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import base_datos.Archivo;
+import base_datos.Archivo_Unico;
 
 import datos.Actividad;
 import datos.Auspiciante;
@@ -129,6 +135,11 @@ public class Principal extends javax.swing.JFrame {
 		try {
 			this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 			this.setTitle("Principal");
+			this.addWindowListener(new WindowAdapter() {
+				public void windowClosing(WindowEvent evt) {
+					thisWindowClosing(evt);
+				}
+			});
 			{
 				pestaña_principal = new JTabbedPane();
 				getContentPane().add(pestaña_principal, BorderLayout.CENTER);
@@ -217,12 +228,22 @@ public class Principal extends javax.swing.JFrame {
 								btn_eliminar_evento = new JButton();
 								btn_eliminar_evento.setText("Eliminar Evento");
 								btn_eliminar_evento.setSize(150, 35);
+								btn_eliminar_evento.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent evt) {
+										btn_eliminar_eventoActionPerformed(evt);
+									}
+								});
 							}
 							{
 								btn_modificar_evento = new JButton();
 								btn_modificar_evento
 										.setText("Modificar Evento");
 								btn_modificar_evento.setSize(150, 35);
+								btn_modificar_evento.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent evt) {
+										btn_modificar_eventoActionPerformed(evt);
+									}
+								});
 							}
 							pnl_botonesLayout
 									.setHorizontalGroup(pnl_botonesLayout
@@ -730,11 +751,40 @@ public class Principal extends javax.swing.JFrame {
 		mostrarListaAuspiciantes();
 	}
 
+	// Crear un evento nuevo
 	private void btn_crear_eventoMouseClicked(MouseEvent evt) {
 		System.out.println("btn_crear_evento.mouseClicked, event=" + evt);
 		abm_event.setVisible(true);
 		setEnabled(false);
 	}
+	
+	// Modificar Un Evento seleccionado de la lista
+	private void btn_modificar_eventoActionPerformed(ActionEvent evt) {
+		System.out.println("btn_modificar_evento.actionPerformed, event="+evt);
+		int i = lst_eventos.getSelectedIndex();
+		if (i == -1){
+			JOptionPane.showMessageDialog(null, "Debe seleccionar un evento de la lista de Eventos");
+		}else{
+			Evento e = (Evento) sys.Sistema.D.lista_eventos.get(i);
+			abm_event.modificarEvento(e);
+			abm_event.setVisible(true);			
+			setEnabled(false);
+		}
+	}
+	
+	//Eliminar un responsable de la lista
+	private void btn_eliminar_eventoActionPerformed(ActionEvent evt) {
+		System.out.println("btn_eliminar_evento.actionPerformed, event="+evt);
+		int i = lst_eventos.getSelectedIndex();
+		if (i == -1){
+			JOptionPane.showMessageDialog(null, "Debe seleccionar un Evento de la lista de Eventos");
+		}else{
+			sys.Sistema.D.lista_eventos.remove(i);
+			ActualizarCampos();
+			JOptionPane.showMessageDialog(null, "El Evento fue eliminado del sistema");
+		}
+	}
+
 
 	private void btn_crear_actividadActionPerformed(ActionEvent evt) {
 		System.out.println("btn_crear_actividad.actionPerformed, event=" + evt);
@@ -751,4 +801,12 @@ public class Principal extends javax.swing.JFrame {
 		System.out.println("lst_actividades.mouseClicked, event=" + evt);
 		mostrarDetallesAct();
 	}
+	
+	private void thisWindowClosing(WindowEvent evt) {
+		System.out.println("this.windowClosing, event="+evt);
+		sys.Sistema.A.setDatos(sys.Sistema.D);
+		sys.Sistema.A.GuardarLista();
+	}
+	
+
 }

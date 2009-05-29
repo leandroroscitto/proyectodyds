@@ -1,46 +1,39 @@
 package datos.Relaciones;
 
 import java.awt.Event;
+import java.io.Serializable;
 
-import datos.Elemento_Serializable;
+import datos.Auspiciante;
 
-public class Auspicio extends Elemento_Serializable{
 
-	private int Evento_id;
-	private int Auspiciante_id;
+public class Auspicio implements Serializable {
+	
+	private Auspiciante A;
 	private String Tipo;
 	private float Arancel;
 	
-	public Auspicio(int e_id, int a_id, String t, float a){
-		Evento_id = e_id;
-		Auspiciante_id = a_id;
+	public Auspicio(Auspiciante aus, String t, float a){		
+		A = aus;
 		Tipo = t;
 		Arancel = a;		
 	}
 
-	public float getArancel() {
+	public float getArancel(){
 		return Arancel;
 	}
 
-	public void setArancel(float arancel) {
+	public void setArancel(float arancel){
 		Arancel = arancel;
 	}
 
-	public int getAuspiciante_id() {
-		return Auspiciante_id;
+	public Auspiciante getAuspiciante() {
+		return A;
 	}
 
-	public void setAuspiciante_id(int auspiciante_id) {
-		Auspiciante_id = auspiciante_id;
+	public void setAuspiciante(Auspiciante aus) {
+		A = aus;
 	}
-
-	public int getEvento_id() {
-		return Evento_id;
-	}
-
-	public void setEvento_id(int evento_id) {
-		Evento_id = evento_id;
-	}
+	
 
 	public String getTipo() {
 		return Tipo;

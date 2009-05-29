@@ -4,8 +4,10 @@ import com.cloudgarden.layout.AnchorLayout;
 
 import datos.Auspiciante;
 import datos.Persona;
+import datos.Relaciones.Auspicio;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -63,6 +65,8 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 	// Componentes
 	private pnl_lista_auspicios Parent;
 	private JScrollPane jScrollPane1;
+	
+
 
 	{
 		//Set Look & Feel
@@ -105,17 +109,20 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 					}
 					{
 						jScrollPane1 = new JScrollPane();
-						pnl_lst_ausp.add(jScrollPane1, new AnchorConstraint(115, 7, 711, 5, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS));
-						jScrollPane1.setPreferredSize(new java.awt.Dimension(334, 90));
+						pnl_lst_ausp.add(jScrollPane1, new AnchorConstraint(115, 9, 711, 5, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS));
+						jScrollPane1.setPreferredSize(new java.awt.Dimension(332, 90));
+						jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+						jScrollPane1.getVerticalScrollBar().setAutoscrolls(true);
+						jScrollPane1.setAutoscrolls(true);
 						{
 							ListModel lst_auspiciantesModel = 
 								new DefaultComboBoxModel(
 										new String[] {  });
 							lst_auspiciantes = new JList();
-							jScrollPane1.setViewportView(lst_auspiciantes);
+							jScrollPane1.setViewportView(lst_auspiciantes);							
 							lst_auspiciantes.setModel(lst_auspiciantesModel);										        
 							lst_auspiciantes.setPreferredSize(new java.awt.Dimension(334, 90));
-							lst_auspiciantes.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+							lst_auspiciantes.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));							
 
 						}
 					}
@@ -177,6 +184,11 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 						btn_canelar = new JButton();
 						pnl_botones.add(btn_canelar);
 						btn_canelar.setText("Cancelar");
+						btn_canelar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								btn_canelarActionPerformed(evt);
+							}
+						});
 					}
 				}
 					thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
@@ -191,24 +203,38 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 			}
 			pack();
 			this.setSize(352, 271);
-			mostrarListaAuspiciantes();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	
-	private void mostrarListaAuspiciantes(){
+	public void mostrarListaAuspiciantes(Auspicio a){
+		int indice = -1;
 		DefaultListModel modelo = new DefaultListModel();
-		
 		ArrayList lista_auspiciantes = sys.Sistema.D.lista_auspiciantes;
-		
 		int cant = lista_auspiciantes.size();		
-		for (int i = 0; i< cant; i++){			
-			modelo.addElement(((Auspiciante)lista_auspiciantes.get(i)).getNombre());			
-		}	
-		lst_auspiciantes.setModel(modelo);	
+		for (int i = 0; i< cant; i++){
+			if (a != null){
+				if (((Auspiciante)lista_auspiciantes.get(i)) == a.getAuspiciante()){
+					indice = i;
+				}
+			}
+			modelo.addElement(((Auspiciante)lista_auspiciantes.get(i)).getNombre());		
+		}
+		lst_auspiciantes.setModel(modelo);
+		if (a != null){
+			lst_auspiciantes.setSelectedIndex(indice);
+			txf_tipo_ausp.setText(a.getTipo());
+			Float f = new Float(a.getArancel());
+			txf_arancel.setText(f.toString());					
+		}
+		
+		 
+		
 	}
+	
 	private void thisWindowClosing(WindowEvent evt) {
 		System.out.println("this.windowClosing, event="+evt);
 		Parent.setEnabled(true);
@@ -223,8 +249,40 @@ public class dlg_registro_ausp extends javax.swing.JDialog {
 			JOptionPane.showMessageDialog(null, "Seleccione un auspiciante de la lista");
 		}else{
 				String tipo = txf_tipo_ausp.getText();
+				String arancel = txf_arancel.getText();
+				if ( (tipo.compareTo("") == 0) || (arancel.compareTo("") == 0 )){
+					JOptionPane.showMessageDialog(null, "Llene los campos solicitados");
+				}else{
+					Auspiciante aus = (Auspiciante) sys.Sistema.D.lista_auspiciantes.get(i);					
+					try{
+						Float f_val = new Float(arancel);
+						float f = f_val.floatValue();
+						Auspicio a = new Auspicio(aus,tipo,f);						
+						if (Parent.modificar != -1){
+							Parent.lista_auspicios.remove(Parent.modificar);
+							Parent.lista_auspicios.add(Parent.modificar,a);
+							Parent.modificar = -1;							
+						}else{Parent.lista_auspicios.add(a);}						
+						Parent.mostrarLista();
+						txf_arancel.setText(null);
+						txf_tipo_ausp.setText(null);
+						lst_auspiciantes.setSelectedIndex(-1);						
+					}catch(Exception e){
+						JOptionPane.showMessageDialog(null, "Ingrese un Arancel Correcto ");
+					}					
+					
+				}
+				
 			
 		}
+	}
+	
+	private void btn_canelarActionPerformed(ActionEvent evt) {
+		System.out.println("btn_canelar.actionPerformed, event="+evt);
+		Parent.setEnabled(true);
+		Parent.requestFocus();
+		setVisible(false);
+		
 	}
 
 }

@@ -58,11 +58,18 @@ public class Principal_prueba {
 		D.lista_auspiciantes.add(a8);
 		D.lista_auspiciantes.add(a9);
 
-		Evento e1 = new Evento(1, "Nombre 1", "Organizador 1");
-		Evento e2 = new Evento(2, "Nombre 2", "Organizador 2");
-		Evento e3 = new Evento(3, "Nombre 3", "Organizador 3");
-		Evento e4 = new Evento(4, "Nombre 4", "Organizador 4");
-		Evento e5 = new Evento(5, "Nombre 5", "Organizador 5");
+		
+		ArrayList r1 = new ArrayList();
+		ArrayList r2 = new ArrayList();
+		ArrayList r3 = new ArrayList();
+		ArrayList r4 = new ArrayList();
+		ArrayList r5 = new ArrayList();
+		
+		Evento e1 = new Evento("Nombre 1", "Organizador 1",r1);
+		Evento e2 = new Evento("Nombre 2", "Organizador 2",r2);
+		Evento e3 = new Evento("Nombre 3", "Organizador 3",r3);
+		Evento e4 = new Evento("Nombre 4", "Organizador 4",r4);
+		Evento e5 = new Evento("Nombre 5", "Organizador 5",r5);
 		
 		D.lista_eventos.add(e1);
 		D.lista_eventos.add(e2);

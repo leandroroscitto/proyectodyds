@@ -4,18 +4,27 @@ import java.util.ArrayList;
 
 public class Evento extends Elemento_Serializable {
 
+	private static int id_actual = 0;
+	
 	private int ID;
 	private String Nombre;
 	private String Organizador;
 
+	//LISTA DE RESPONSABLES ASOCIADA
+	private ArrayList Lista_Resp_Asociadas;
+	//LISTA DE AUSPICIOS ASOCIADA
+	private ArrayList Lista_Ausp_Asociadas;
 	// LISTA DE ACTIVIDADES ASOCIADAS
 	private ArrayList Lista_Act_Asociadas;
 
-	public Evento(int i, String n, String p) {
-		ID = i;
+	public Evento(String n, String p, ArrayList L) {
+		ID = id_actual;
 		Nombre = n;
 		Organizador = p;
 		Lista_Act_Asociadas = new ArrayList();
+		Lista_Resp_Asociadas = L;
+		Lista_Ausp_Asociadas = new ArrayList();
+		id_actual++;
 	}
 
 	public int getID() {
@@ -57,6 +66,10 @@ public class Evento extends Elemento_Serializable {
 			System.out.println("Fuera de rango en lista de actividades asociadas.");
 			return null;
 		}
+	}
+	
+	public void asociar_Lista_Auspicios(ArrayList a){
+		Lista_Ausp_Asociadas = a;
 	}
 	
 	public int cant_Acts_Asociadas(){

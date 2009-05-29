@@ -51,7 +51,7 @@ public class frm_abm_eventos extends javax.swing.JFrame {
 	private pnl_lista_responsables pnl_lista_responsables1;
 	
 	// Componentes
-	private JFrame Parent;
+	private Principal Parent;
 
 	/**
 	 * Auto-generated main method to display this JFrame
@@ -66,7 +66,7 @@ public class frm_abm_eventos extends javax.swing.JFrame {
 		});
 	}
 
-	public frm_abm_eventos(JFrame P) {
+	public frm_abm_eventos(Principal P) {
 		super();
 		Parent = P;
 		initGUI();
@@ -136,31 +136,30 @@ public class frm_abm_eventos extends javax.swing.JFrame {
 	private void btn_aceptaActionPerformed(ActionEvent evt) {
 		System.out.println("pnl_botones_ac1.btn_acepta.actionPerformed, event="+evt);
 		
-		Date d_actual = new Date();
-		
-
-		
-		Date d_ini = pnl_atrib_evt1.dtc_fecha_ini_evt.getDate();
-		Date d_fin = pnl_atrib_evt1.dtc_fecha_fin_evt.getDate();
-		
-		if (d_ini == null){
-			JOptionPane.showConfirmDialog(null,"Fecha de Inicio del Evento Incorrecta","Mensaje de Error", JOptionPane.CLOSED_OPTION);
-		}else if (d_actual.compareTo(d_ini) > 0){
-			JOptionPane.showConfirmDialog(null,"Fecha de Inicio del Evento Menor que la Fecha Actual","Mensaje de Error", JOptionPane.CLOSED_OPTION);
-		}
-		
-		
-		
-		
-		else if(d_fin == null){
-				JOptionPane.showConfirmDialog(null,"Fecha de Finalizacion del Evento Incorrecta","Mensaje de Error", JOptionPane.CLOSED_OPTION);
-				}
-				else if( (d_actual.compareTo(d_ini) > 0) || (d_actual.compareTo(d_fin) > 0)){
-					JOptionPane.showConfirmDialog(null,"Fecha Ingresada menor a la actual");
-					}else if (d_ini.compareTo(d_fin) > 0){
-							JOptionPane.showConfirmDialog(null,"Fecha de inicio menor que la fecha de finalizacion");
-							}else{
-								int i2 = JOptionPane.showConfirmDialog(null,d_actual, "Eliminar Auspicio",JOptionPane.CANCEL_OPTION );
-							}
+		if (pnl_atrib_evt1.txf_nombre_evt.getText().compareTo("") == 0){
+			JOptionPane.showConfirmDialog(null,"Ingrese el nombre del Evento","Mensaje de Error", JOptionPane.CLOSED_OPTION);
+		}else if (pnl_atrib_evt1.txf_organizador_evt.getText().compareTo("") == 0){
+			  	  JOptionPane.showConfirmDialog(null,"Ingrese el organizador del Evento","Mensaje de Error", JOptionPane.CLOSED_OPTION);
+			  }else{ 	
+				  	Date d_actual = new Date();		
+				  	Date d_ini = pnl_atrib_evt1.dtc_fecha_ini_evt.getDate();
+				  	Date d_fin = pnl_atrib_evt1.dtc_fecha_fin_evt.getDate();		
+				  	if (d_ini == null){
+				  		JOptionPane.showConfirmDialog(null,"Fecha de Inicio del Evento Incorrecta","Mensaje de Error", JOptionPane.CLOSED_OPTION);		
+				  	}else if(d_fin == null){
+				  		     JOptionPane.showConfirmDialog(null,"Fecha de Finalizacion del Evento Incorrecta","Mensaje de Error", JOptionPane.CLOSED_OPTION);
+				  		  }else if (d_ini.compareTo(d_fin) > 0){
+							        JOptionPane.showConfirmDialog(null,"Fecha de inicio menor que la fecha de finalizacion","Mensaje de Error", JOptionPane.CLOSED_OPTION );
+				  		  		}else if (pnl_lista_responsables1.lista_responsables.isEmpty()){
+				  		  				JOptionPane.showConfirmDialog(null,"Debe ingresar al menos un responsable","Mensaje de Error", JOptionPane.CLOSED_OPTION);
+				  		  		      }else{
+				  		  		    	  Evento e = new Evento(pnl_atrib_evt1.txf_nombre_evt.getText(),pnl_atrib_evt1.txf_organizador_evt.getText(),pnl_lista_responsables1.lista_responsables);
+				  		  		    	  e.asociar_Lista_Auspicios(pnl_lista_auspicios1.lista_auspicios);
+				  		  		    	  sys.Sistema.D.lista_eventos.add(e);
+				  		  		    	  JOptionPane.showConfirmDialog(null,"El Evento fue creado exitosamente","Mensaje de Exito", JOptionPane.CLOSED_OPTION);
+				  		  		    	  Parent.ActualizarCampos();
+				  		  		    	  
+				  		  		      }
+				  		  		}
 	}
 }

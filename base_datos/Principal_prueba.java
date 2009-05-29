@@ -18,11 +18,7 @@ public class Principal_prueba {
 	 */
 	public static void main(String[] args) {
 		Datos D = new Datos();
-		D.lista_personas = new ArrayList();
-		D.lista_eventos = new ArrayList();
-		D.lista_auspiciantes = new ArrayList();
-		D.lista_actividades = new ArrayList();
-
+		
 		Archivo A = Archivo_Unico.getArchivo();
 		
 		Persona p1 = new Persona(1, "Pepe", "Gonzales", "35669785",
@@ -74,7 +70,7 @@ public class Principal_prueba {
 		D.lista_eventos.add(e4);
 		D.lista_eventos.add(e5);
 		
-		Actividad act1 = new Actividad(0,"Act 1",p1,e1,new Date(2009,10,23),new Date(2009,10,24));
+		Actividad act1 = new Actividad(0,"Act 1",p1,e2,new Date(2009,10,23),new Date(2009,10,24));
 		Actividad act2 = new Actividad(1,"Act 2",p2,e2,new Date(2009,10,23),new Date(2009,10,24));
 		Actividad act3 = new Actividad(2,"Act 3",p3,e3,new Date(2009,10,23),new Date(2009,10,24));
 		Actividad act4 = new Actividad(3,"Act 4",p4,e4,new Date(2009,10,23),new Date(2009,10,24));
@@ -102,6 +98,8 @@ public class Principal_prueba {
 		D.lista_actividades.add(act5);
 		
 		act1.agregarResp(p2);
+		
+		//D = new Datos();
 
 		// Closign
 		A.setDatos(D);

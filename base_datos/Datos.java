@@ -21,6 +21,11 @@ public class Datos implements Serializable {
 	public ArrayList lista_caracter_participacion;
 
 	public Datos() {
+		lista_actividades= new ArrayList();
+		lista_auspiciantes= new ArrayList();
+		lista_caracter_participacion= new ArrayList();
+		lista_eventos= new ArrayList();
+		lista_personas= new ArrayList();
 	}
 
 }

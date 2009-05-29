@@ -1,6 +1,7 @@
 package interfaces;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
@@ -11,9 +12,14 @@ import com.sun.org.apache.bcel.internal.generic.LSTORE;
 
 import datos.Evento;
 import datos.Persona;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.*;
+
+
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
@@ -83,11 +89,19 @@ public class frm_abm_eventos extends javax.swing.JFrame {
 				pnl_botones_ac1 = new pnl_botones_ac();
 				getContentPane().add(pnl_botones_ac1, new AnchorConstraint(850, 5, 5, 5, AnchorConstraint.ANCHOR_NONE, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS));
 				pnl_botones_ac1.setPreferredSize(new java.awt.Dimension(477, 51));
+				pnl_botones_ac1.btn_acepta.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						btn_aceptaActionPerformed(evt);
+					}
+				});
 			}
 			{
 				pnl_atrib_evt1 = new pnl_atrib_evt();
 				getContentPane().add(pnl_atrib_evt1, new AnchorConstraint(5, 5, 259, 5, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_ABS, AnchorConstraint.ANCHOR_NONE, AnchorConstraint.ANCHOR_ABS));
 				pnl_atrib_evt1.setPreferredSize(new java.awt.Dimension(477, 116));
+				pnl_atrib_evt1.dtc_fecha_ini_evt.setDateFormatString("dd-MM-yy");
+				pnl_atrib_evt1.dtc_fecha_fin_evt.setDateFormatString("dd-MM-yy");
+				pnl_atrib_evt1.dtc_fecha_ini_evt.setToolTipText("");
 			}
 			{
 				pnl_lista_responsables1 = new pnl_lista_responsables(this);
@@ -117,5 +131,36 @@ public class frm_abm_eventos extends javax.swing.JFrame {
 		this.setVisible(false);
 		Parent.setEnabled(true);
 		Parent.requestFocus();
+	}
+	
+	private void btn_aceptaActionPerformed(ActionEvent evt) {
+		System.out.println("pnl_botones_ac1.btn_acepta.actionPerformed, event="+evt);
+		
+		Date d_actual = new Date();
+		
+
+		
+		Date d_ini = pnl_atrib_evt1.dtc_fecha_ini_evt.getDate();
+		Date d_fin = pnl_atrib_evt1.dtc_fecha_fin_evt.getDate();
+		
+		if (d_ini == null){
+			JOptionPane.showConfirmDialog(null,"Fecha de Inicio del Evento Incorrecta","Mensaje de Error", JOptionPane.CLOSED_OPTION);
+		}else if (d_actual.compareTo(d_ini) > 0){
+			JOptionPane.showConfirmDialog(null,"Fecha de Inicio del Evento Menor que la Fecha Actual","Mensaje de Error", JOptionPane.CLOSED_OPTION);
+		}
+		
+		
+		
+		
+		else if(d_fin == null){
+				JOptionPane.showConfirmDialog(null,"Fecha de Finalizacion del Evento Incorrecta","Mensaje de Error", JOptionPane.CLOSED_OPTION);
+				}
+				else if( (d_actual.compareTo(d_ini) > 0) || (d_actual.compareTo(d_fin) > 0)){
+					JOptionPane.showConfirmDialog(null,"Fecha Ingresada menor a la actual");
+					}else if (d_ini.compareTo(d_fin) > 0){
+							JOptionPane.showConfirmDialog(null,"Fecha de inicio menor que la fecha de finalizacion");
+							}else{
+								int i2 = JOptionPane.showConfirmDialog(null,d_actual, "Eliminar Auspicio",JOptionPane.CANCEL_OPTION );
+							}
 	}
 }

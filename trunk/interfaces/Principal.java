@@ -329,21 +329,28 @@ public class Principal extends javax.swing.JFrame {
 											225, 288));
 							{
 								jScrollPane1 = new JScrollPane();
-								pnl_lista_actividades.add(jScrollPane1, BorderLayout.CENTER);
-								jScrollPane1.setPreferredSize(new java.awt.Dimension(249, 266));
+								pnl_lista_actividades.add(jScrollPane1,
+										BorderLayout.CENTER);
+								jScrollPane1
+										.setPreferredSize(new java.awt.Dimension(
+												249, 266));
 								{
 									DefaultListModel lst_actividadesModel = new DefaultListModel();
 									lst_actividades = new JList();
-									jScrollPane1.setViewportView(lst_actividades);
-									lst_actividades.setModel(lst_actividadesModel);
+									jScrollPane1
+											.setViewportView(lst_actividades);
 									lst_actividades
-									.setBorder(BorderFactory
-											.createBevelBorder(BevelBorder.LOWERED));
-									lst_actividades.addMouseListener(new MouseAdapter() {
-										public void mouseClicked(MouseEvent evt) {
-											lst_actividadesMouseClicked(evt);
-										}
-									});
+											.setModel(lst_actividadesModel);
+									lst_actividades
+											.setBorder(BorderFactory
+													.createBevelBorder(BevelBorder.LOWERED));
+									lst_actividades
+											.addMouseListener(new MouseAdapter() {
+												public void mouseClicked(
+														MouseEvent evt) {
+													lst_actividadesMouseClicked(evt);
+												}
+											});
 								}
 							}
 						}
@@ -363,7 +370,8 @@ public class Principal extends javax.swing.JFrame {
 								.setLayout(jPanel2Layout);
 						{
 							pnl_detalles_actividades = new JPanel();
-							GroupLayout jPanel3Layout = new GroupLayout((JComponent)pnl_detalles_actividades);
+							GroupLayout jPanel3Layout = new GroupLayout(
+									(JComponent) pnl_detalles_actividades);
 							pnl_detalles_botones_actividades
 									.add(pnl_detalles_actividades);
 							pnl_detalles_actividades
@@ -392,47 +400,47 @@ public class Principal extends javax.swing.JFrame {
 							}
 							{
 								lbl_DNombre_Act_info = new JLabel();
-								lbl_DNombre_Act_info.setText("NOA");
+								lbl_DNombre_Act_info.setSize(144, 16);
 							}
 							{
 								lbl_DPAcargo_info = new JLabel();
-								lbl_DPAcargo_info.setText("NOA");
+								lbl_DPAcargo_info.setSize(144, 16);
 							}
 							{
 								lbl_DFechaI_Act_info = new JLabel();
-								lbl_DFechaI_Act_info.setText("NOA");
+								lbl_DFechaI_Act_info.setSize(144, 16);
 							}
 							{
 								lbl_DFechaF_Act_info = new JLabel();
-								lbl_DFechaF_Act_info.setText("NOA");
+								lbl_DFechaF_Act_info.setSize(144, 16);
 							}
 							jPanel3Layout.setHorizontalGroup(jPanel3Layout.createSequentialGroup()
 								.addGroup(jPanel3Layout.createParallelGroup()
 								    .addComponent(lbl_DPerCargo, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
 								    .addComponent(lbl_DFecha_Ini_Act, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
 								    .addComponent(lbl_DFecha_Fin_Act, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
-								    .addComponent(lbl_DNom_Act, GroupLayout.Alignment.LEADING, 0, 105, Short.MAX_VALUE))
+								    .addComponent(lbl_DNom_Act, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))
 								.addGroup(jPanel3Layout.createParallelGroup()
 								    .addComponent(lbl_DPAcargo_info, GroupLayout.Alignment.LEADING, 0, 144, Short.MAX_VALUE)
 								    .addComponent(lbl_DFechaI_Act_info, GroupLayout.Alignment.LEADING, 0, 144, Short.MAX_VALUE)
 								    .addComponent(lbl_DFechaF_Act_info, GroupLayout.Alignment.LEADING, 0, 144, Short.MAX_VALUE)
 								    .addComponent(lbl_DNombre_Act_info, GroupLayout.Alignment.LEADING, 0, 144, Short.MAX_VALUE)));
 							jPanel3Layout.setVerticalGroup(jPanel3Layout.createSequentialGroup()
-								.addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								    .addComponent(lbl_DNom_Act, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-								    .addComponent(lbl_DNombre_Act_info, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(jPanel3Layout.createParallelGroup()
+								    .addComponent(lbl_DNombre_Act_info, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+								    .addComponent(lbl_DNom_Act, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								    .addComponent(lbl_DPAcargo_info, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-								    .addComponent(lbl_DPerCargo, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(jPanel3Layout.createParallelGroup()
+								    .addComponent(lbl_DPAcargo_info, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+								    .addComponent(lbl_DPerCargo, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-								.addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								    .addComponent(lbl_DFechaI_Act_info, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-								    .addComponent(lbl_DFecha_Ini_Act, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(jPanel3Layout.createParallelGroup()
+								    .addComponent(lbl_DFechaI_Act_info, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+								    .addComponent(lbl_DFecha_Ini_Act, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								    .addComponent(lbl_DFechaF_Act_info, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-								    .addComponent(lbl_DFecha_Fin_Act, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(jPanel3Layout.createParallelGroup()
+								    .addComponent(lbl_DFechaF_Act_info, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+								    .addComponent(lbl_DFecha_Fin_Act, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addContainerGap(52, 52));
 						}
 						{
@@ -561,7 +569,9 @@ public class Principal extends javax.swing.JFrame {
 		for (i = 0; i < lista_eventos.size(); i++) {
 			box_eventos.addItem(((Evento) (lista_eventos.get(i))).getNombre());
 		}
-		box_eventos.setSelectedIndex(0);
+		if (lista_eventos.size() > 0) {
+			box_eventos.setSelectedIndex(0);
+		}
 	}
 
 	// Carga la lista de actividades segun el evento seleccionado en el combo
@@ -571,34 +581,61 @@ public class Principal extends javax.swing.JFrame {
 		ArrayList lista_eventos = sys.Sistema.D.lista_eventos;
 
 		int ievtselec = box_eventos.getSelectedIndex();
-		Evento EvtSelec = (Evento) lista_eventos.get(ievtselec);
-
-		DefaultListModel mdl_list_act = (DefaultListModel) lst_actividades
-				.getModel();
-		mdl_list_act.removeAllElements();
-
-		for (i = 0; i < EvtSelec.cant_Acts_Asociadas(); i++) {
-			mdl_list_act.addElement(((Actividad) (EvtSelec.get_Actividad(i)))
-					.getNombre());
+		Evento EvtSelec = null;
+		if (ievtselec >= 0) {
+			EvtSelec = (Evento) lista_eventos.get(ievtselec);
 		}
-		lst_actividades.setSelectedIndex(0);
-		mostrarDetallesAct();
+
+		if (EvtSelec != null) {
+			DefaultListModel mdl_list_act = (DefaultListModel) lst_actividades
+					.getModel();
+			mdl_list_act.removeAllElements();
+
+			for (i = 0; i < EvtSelec.cant_Acts_Asociadas(); i++) {
+				mdl_list_act
+						.addElement(((Actividad) (EvtSelec.get_Actividad(i)))
+								.getNombre());
+			}
+			lst_actividades.setSelectedIndex(0);
+			mostrarDetallesAct();
+		}
 	}
-	
-	//Muestra los detalles de una actividad
-	private void mostrarDetallesAct(){
-		ArrayList lista_actividades= sys.Sistema.D.lista_actividades;
+
+	// Muestra los detalles de una actividad
+	private void mostrarDetallesAct() {
+		ArrayList lista_actividades = sys.Sistema.D.lista_actividades;
 		ArrayList lista_eventos = sys.Sistema.D.lista_eventos;
 
 		int ievtselec = box_eventos.getSelectedIndex();
 		int iactsel = lst_actividades.getSelectedIndex();
-		Evento EvtSelec = (Evento) lista_eventos.get(ievtselec);
-		Actividad ActSelec = (Actividad) EvtSelec.get_Actividad(iactsel);
-		
-		lbl_DNombre_Act_info.setText(ActSelec.getNombre());
-		lbl_DPAcargo_info.setText(ActSelec.getPersona_a_cargo().getNombre()+" "+ActSelec.getPersona_a_cargo().getApellido());
-		lbl_DFechaI_Act_info.setText(ActSelec.getFecha_Inicio().toString());
-		lbl_DFechaF_Act_info.setText(ActSelec.getFecha_Fin().toString());
+		Evento EvtSelec = null;
+		if (ievtselec >= 0) {
+			EvtSelec = (Evento) lista_eventos.get(ievtselec);
+		}
+
+		if (EvtSelec != null) {
+			Actividad ActSelec = null;
+			if (iactsel >= 0) {
+				ActSelec = (Actividad) EvtSelec.get_Actividad(iactsel);
+			}
+
+			if (ActSelec != null) {
+				lbl_DNombre_Act_info.setText(ActSelec.getNombre());
+				lbl_DPAcargo_info.setText(ActSelec.getPersona_a_cargo()
+						.getNombre()
+						+ " " + ActSelec.getPersona_a_cargo().getApellido());
+				lbl_DFechaI_Act_info.setText(ActSelec.getFecha_Inicio()
+						.toString());
+				lbl_DFechaF_Act_info
+						.setText(ActSelec.getFecha_Fin().toString());
+			} else {
+				lbl_DNombre_Act_info.setText("");
+				lbl_DPAcargo_info.setText("");
+				lbl_DFechaI_Act_info.setText("");
+				lbl_DFechaF_Act_info.setText("");
+			}
+		}
+
 	}
 
 	private void ActualizarCampos() {
@@ -623,9 +660,9 @@ public class Principal extends javax.swing.JFrame {
 		System.out.println("box_eventos.actionPerformed, event=" + evt);
 		cargarActividadesLst();
 	}
-	
+
 	private void lst_actividadesMouseClicked(MouseEvent evt) {
-		System.out.println("lst_actividades.mouseClicked, event="+evt);
+		System.out.println("lst_actividades.mouseClicked, event=" + evt);
 		mostrarDetallesAct();
 	}
 }

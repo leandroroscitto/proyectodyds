@@ -55,7 +55,7 @@ public class dlg_reg_resp extends javax.swing.JDialog {
 	
 	
 	// Componentes
-	private ArrayList responsables = new ArrayList();;
+	public ArrayList responsables = new ArrayList();;
 	private pnl_lista_responsables Parent1;
 	private JFrame Parent2;
 

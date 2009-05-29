@@ -120,6 +120,7 @@ public class Principal extends javax.swing.JFrame {
 	public Principal() {
 		super();
 		Iniciar_comp();
+		
 		initGUI();
 		
 	}
@@ -688,19 +689,25 @@ public class Principal extends javax.swing.JFrame {
 
 	}
 
+	//Cargar Eventos en la pestaña de Eventos	
 	private void cargarEventosLst()
 	{
 	int i;
 	ArrayList lista_eventos = sys.Sistema.D.lista_eventos;
 
-	DefaultListModel mdl_list_evt = (DefaultListModel) lst_eventos.getModel(); 
-	mdl_list_evt.removeAllElements();
-	for (i = 0; i < lista_eventos.size(); i++) {
+	//DefaultListModel mdl_list_evt = (DefaultListModel) lst_eventos.getModel(); 
+	//mdl_list_evt.removeAllElements();
+	DefaultListModel model = new DefaultListModel();
+	
+	for (i = 0; i < lista_eventos.size(); i++){
 		
-		mdl_list_evt.addElement(((Evento) (lista_eventos.get(i))).getNombre());
+		//mdl_list_evt.addElement(((Evento) (lista_eventos.get(i))).getNombre());
+		model.addElement(((Evento) (lista_eventos.get(i))).getNombre());
 	}
 	
 	//lst_eventos.setModel(mdl_list_evt);
+	lst_eventos.setModel(model);
+	
 	}
 	
 	private void mostrarListaAuspiciantes(){
@@ -715,7 +722,7 @@ public class Principal extends javax.swing.JFrame {
 		lst_auspiciantes.setModel(modelo);	
 	}
 
-	private void ActualizarCampos() {
+	public void ActualizarCampos() {
 		cargarEventosCB();
 		cargarEventosLst();	
 		cargarActividadesLst();	

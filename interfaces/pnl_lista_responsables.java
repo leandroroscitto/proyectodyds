@@ -55,7 +55,7 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 	public JPanel pnl_botones_lst_resp;
 
 	private JFrame Parent;
-	private ArrayList lista_responsables = new ArrayList();
+	public ArrayList lista_responsables = new ArrayList();
 		
 	
 	public pnl_lista_responsables(){

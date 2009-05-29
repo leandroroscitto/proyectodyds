@@ -12,14 +12,11 @@ public class Sistema {
 	// Parametros
 
 	public static Datos D;
+	public static Archivo A = Archivo_Unico.getArchivo();
 
-	public static void main(String[] args) {
-
-		Archivo A = Archivo_Unico.getArchivo();
+	public static void main(String[] args) {		
 		A.AbrirLista();
-
 		D = A.getDatos();
-
 		Principal inst = new Principal();
 		inst.setVisible(true);
 		inst.setEnabled(true);

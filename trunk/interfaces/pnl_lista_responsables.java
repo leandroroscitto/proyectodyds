@@ -118,7 +118,9 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 						}
 					});
 				}
+				
 			}
+			mostrarLista();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -138,10 +140,11 @@ public class pnl_lista_responsables extends javax.swing.JPanel {
 	
 	
 	//Muestra la lista de responsables en la interfaz
-	private void mostrarLista(){	
+	public void mostrarLista(){	
 		DefaultListModel modelo = new DefaultListModel();
 		
-		int cant = lista_responsables.size();		
+		int cant = lista_responsables.size();
+		
 		for (int i = 0; i< cant; i++){			
 			modelo.addElement(((Persona)lista_responsables.get(i)).getNombre());			
 		}	

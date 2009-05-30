@@ -20,6 +20,8 @@ public class Sistema {
 		Principal inst = new Principal();
 		inst.setVisible(true);
 		inst.setEnabled(true);
+		//A.setDatos(D);
+		//A.GuardarLista();
 	}
 
 }

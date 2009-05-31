@@ -1,8 +1,15 @@
 package datos;
 
-public class Persona extends Elemento_Serializable {
+import java.io.Serializable;
+
+public class Persona implements Serializable {
 	//private static final long serialVersionUID = 1L;
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String Nombre;
 
 	private String Apellido;
@@ -11,8 +18,8 @@ public class Persona extends Elemento_Serializable {
 
 	private String Email;
 
-	public Persona(int c, String N, String A, String D, String E) {
-		clave = c;
+	public Persona(String N, String A, String D, String E) {
+
 		Nombre = N;
 		Apellido = A;
 		DNI = D;

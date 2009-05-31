@@ -1,7 +1,13 @@
 package datos;
 
-public class Auspiciante extends Elemento_Serializable{
+import java.io.Serializable;
 
+public class Auspiciante implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int ID;
 	private String Nombre;
 	private String Telefono;

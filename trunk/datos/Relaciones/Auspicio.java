@@ -1,6 +1,5 @@
 package datos.Relaciones;
 
-import java.awt.Event;
 import java.io.Serializable;
 
 import datos.Auspiciante;
@@ -8,6 +7,10 @@ import datos.Auspiciante;
 
 public class Auspicio implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Auspiciante A;
 	private String Tipo;
 	private float Arancel;

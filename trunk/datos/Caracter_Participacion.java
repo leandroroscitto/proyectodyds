@@ -1,7 +1,13 @@
 package datos;
 
-public class Caracter_Participacion extends Elemento_Serializable{
+import java.io.Serializable;
+
+public class Caracter_Participacion implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int ID;
 	private String Nombre;
 	

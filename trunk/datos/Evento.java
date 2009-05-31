@@ -1,9 +1,15 @@
 package datos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Evento extends Elemento_Serializable {
+public class Evento implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private static int id_actual = 0;
 	

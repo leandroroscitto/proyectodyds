@@ -1,14 +1,14 @@
 package base_datos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-import java.io.*;
-
-import javax.swing.JOptionPane;
-
-import datos.Elemento_Serializable;
-
 public class Datos implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public ArrayList lista_personas;
 

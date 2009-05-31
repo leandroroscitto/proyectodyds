@@ -7,9 +7,9 @@ import javax.swing.JOptionPane;
 
 import datos.Actividad;
 import datos.Auspiciante;
-import datos.Persona;
+import datos.Caracter_Participacion;
 import datos.Evento;
-import datos.Relaciones.Auspicio;
+import datos.Persona;
 
 public class Principal_prueba {
 
@@ -21,16 +21,24 @@ public class Principal_prueba {
 		
 		Archivo A = Archivo_Unico.getArchivo();
 		
-		Persona p1 = new Persona(1, "Pepe", "Gonzales", "35669785",
+		Persona p1 = new Persona("José", "Gonzales", "35669785",
 				"pepe@gmail.com");
-		Persona p2 = new Persona(2, "Carlos", "Perez", "23467412",
+		Persona p2 = new Persona("Carlos", "Perez", "23467412",
 				"carlos@gmail.com");
-		Persona p3 = new Persona(3, "Juan", "Gutierrez", "12456789",
+		Persona p3 = new Persona("Juan", "Gutierrez", "13456789",
 				"juan@gmail.com");
-		Persona p4 = new Persona(4, "Luis", "Martinez", "32654987",
+		Persona p4 = new Persona("Luis", "Martinez", "32654987",
 				"luis@gmail.com");
-		Persona p5 = new Persona(5, "Pancho", "Lopez", "34612879",
+		Persona p5 = new Persona("Fransisco", "Lopez", "34612879",
 				"pancho@gmail.com");
+		Persona p6 = new Persona("Gonzalo", "Perez", "38992879",
+		"gonzalo.perez@gmail.com");
+		Persona p7 = new Persona("Ernesto", "Guevara", "20989979",
+		"guerrillero.che@cubalibre.com");
+		Persona p8 = new Persona("Juan Domingo", "Peron", "12992879",
+		"elgeneral@peronistas.com");
+		Persona p9 = new Persona("Bill", "Gates", "25992879",
+		"windows.es.pago@hotmail.com");
 		
 		Auspiciante a1 = new Auspiciante(1,"Asupiciante 1","111111");
 		Auspiciante a2 = new Auspiciante(2,"Asupiciante 2","222222");
@@ -47,6 +55,10 @@ public class Principal_prueba {
 		D.lista_personas.add(p3);
 		D.lista_personas.add(p4);
 		D.lista_personas.add(p5);
+		D.lista_personas.add(p6);
+		D.lista_personas.add(p7);
+		D.lista_personas.add(p8);
+		D.lista_personas.add(p9);
 		
 		D.lista_auspiciantes.add(a1);
 		D.lista_auspiciantes.add(a2);
@@ -57,17 +69,39 @@ public class Principal_prueba {
 		D.lista_auspiciantes.add(a7);
 		D.lista_auspiciantes.add(a8);
 		D.lista_auspiciantes.add(a9);
-
 		
+		Caracter_Participacion cp1 = new Caracter_Participacion(0,"Alumno");
+		Caracter_Participacion cp2 = new Caracter_Participacion(1,"Profesor");
+		Caracter_Participacion cp3 = new Caracter_Participacion(2,"Asistente");
+		Caracter_Participacion cp4 = new Caracter_Participacion(3,"Ayudante");
+		
+		D.lista_caracter_participacion.add(cp1);
+		D.lista_caracter_participacion.add(cp2);
+		D.lista_caracter_participacion.add(cp3);
+		D.lista_caracter_participacion.add(cp4);
+		
+		Evento SinEvt = new Evento("Sin Evento", "", new Date("1900/01/01"), new Date("2900/01/01"), new ArrayList());
+		D.lista_eventos.add(SinEvt);
+		
+		ArrayList r1 = new ArrayList();
+		
+		Evento e1 = new Evento("Evento de Ejemplo", "Organizador de Ejemplo",new Date("2009/05/29"), new Date("2009/05/30") ,r1);
+		D.lista_eventos.add(e1);
+		
+		ArrayList r2 = new ArrayList();
+		Evento e2 = new Evento("Otro Evento", "Organizador desconocido",new Date("2008/12/31"), new Date("2009/01/01") ,r1);
+		D.lista_eventos.add(e2);
+		
+		Actividad act1 = new Actividad(0,"Actividad de Ejemplo",p1,e1,new Date("2009/05/29"),new Date("2009/10/30"));
+
+		/*
+		
+		Date d = new Date();
 		ArrayList r1 = new ArrayList();
 		ArrayList r2 = new ArrayList();
 		ArrayList r3 = new ArrayList();
 		ArrayList r4 = new ArrayList();
 		ArrayList r5 = new ArrayList();
-		
-		Date d = new Date();
-		
-		
 		Evento e1 = new Evento("Nombre 1", "Organizador 1",d,d,r1);
 		Evento e2 = new Evento("Nombre 2", "Organizador 2",d,d,r2);
 		Evento e3 = new Evento("Nombre 3", "Organizador 3",d,d,r3);
@@ -108,24 +142,16 @@ public class Principal_prueba {
 		D.lista_actividades.add(act5);
 		
 		act1.agregarResp(p2);
-		
+		*/
+
 		//D = new Datos();
 
 		// Closign
 		A.setDatos(D);
 		A.GuardarLista();
 		// ---
-
-		// Open
-		A.AbrirLista();
-		D = A.getDatos();
-		// ---
 		
-		int i;
-		
-		for (i = 0; i < D.lista_auspiciantes.size(); i++) {
-			System.out.println(((Auspiciante) D.lista_auspiciantes.get(i)).getNombre());
-		}
+		JOptionPane.showMessageDialog(null, "Se cargaron las tablas de datos auxiliares y algúnos ejemplos de entidades.");
 
 	}
 }

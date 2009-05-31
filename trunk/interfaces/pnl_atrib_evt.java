@@ -1,17 +1,15 @@
 package interfaces;
-import com.toedter.calendar.JDateChooser;
-
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JComponent;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
+
+import com.toedter.calendar.JDateChooser;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo

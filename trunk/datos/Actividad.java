@@ -1,18 +1,23 @@
 package datos;
 
-import java.awt.Event;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 import datos.Relaciones.Detalle_CP;
 
-public class Actividad extends Elemento_Serializable {
+public class Actividad implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int ID;
 	private String Nombre;
 	private Persona Persona_a_cargo;
 	private Evento EvtAsociado;
-	private ArrayList Lista_CPart_Aceptados;
+	private ArrayList Lista_CDPart_Aceptados;
 	private ArrayList Lista_Responsables;
 	private Date Fecha_Inicio;
 	private Date Fecha_Fin;
@@ -34,7 +39,7 @@ public class Actividad extends Elemento_Serializable {
 		Fecha_Inicio = fini;
 		Fecha_Fin = ffin;
 
-		Lista_CPart_Aceptados = new ArrayList();
+		Lista_CDPart_Aceptados = new ArrayList();
 		Lista_Responsables = new ArrayList();
 	}
 
@@ -69,9 +74,12 @@ public class Actividad extends Elemento_Serializable {
 	public void setEvtAsociado(Evento evtAsociado) {
 		// Primero desasocia la actividad del evento en la que estaba y la
 		// asocia al nuevo.
+		if (evtAsociado != EvtAsociado)
+		{
 		EvtAsociado.desasociar_Act(this);
 		EvtAsociado = evtAsociado;
 		EvtAsociado.asociar_Act(this);
+		}
 	}
 
 	public Date getFecha_Inicio() {
@@ -167,18 +175,23 @@ public class Actividad extends Elemento_Serializable {
 	public int cant_Responsables() {
 		return Lista_Responsables.size();
 	}
+	
+	public void limpiarResp(){
+		Lista_Responsables.clear();
+	}
 
 	public void agregarDCarcPartAcep(Detalle_CP dcp) {
-		Lista_CPart_Aceptados.add(dcp);
+		Lista_CDPart_Aceptados.add(dcp);
+		dcp.setAct(this);
 	}
 	
 	public void quitarDCarcPartAcep(Detalle_CP dcp){
-		Lista_CPart_Aceptados.remove(dcp);
+		Lista_CDPart_Aceptados.remove(dcp);
 	}
 
 	public Detalle_CP getDCarcPartAcep(int i) {
-		if (Lista_CPart_Aceptados.size() > i) {
-			return ((Detalle_CP) (Lista_CPart_Aceptados.get(i)));
+		if (Lista_CDPart_Aceptados.size() > i) {
+			return ((Detalle_CP) (Lista_CDPart_Aceptados.get(i)));
 		} else {
 			System.out
 					.println("Fuera de rango en lista de detalles de los caracters de participacion aceptados.");
@@ -187,6 +200,11 @@ public class Actividad extends Elemento_Serializable {
 	}
 
 	public int cant_CarcPartAcep() {
-		return Lista_CPart_Aceptados.size();
+		return Lista_CDPart_Aceptados.size();
 	}
+	
+	public void limpiarCarcPartAcep(){
+		Lista_CDPart_Aceptados.clear();
+	}
+
 }
